@@ -1,0 +1,5051 @@
+{
+    "features": {
+        "word_count": 142,
+        "sentence_count": 6,
+        "document_length": 167,
+        "sophisticated_ratio": 0.41317365269461076,
+        "concrete_ratio": 0.5748502994011976,
+        "lexical_diversity": 0.9899749373433583,
+        "hapax_legomena_lemma_ratio": 0.3592814371257485,
+        "ratio_passive_per_token": 0.0,
+        "ratio_passive_per_verb": 0.0,
+        "total_token_ratio_passive": 0.0,
+        "max_size_passive": 0,
+        "ratio_coordination_per_token": 0.03592814371257485,
+        "total_token_ratio_coordination": 0.03592814371257485,
+        "max_size_coordination": 1,
+        "ratio_clitic_per_token": 0.08383233532934131,
+        "ratio_pre_clitic_pronouns_per_token": 0.0,
+        "ratio_post_clitic_pronouns_per_token": 0.08383233532934131,
+        "ratio_aux_verbs_per_token": 0.023952095808383235,
+        "ratio_aux_verbs_per_verb": 0.18181818181818182,
+        "total_token_ratio_aux_verbs": 0.04790419161676647,
+        "max_size_aux_verbs": 2,
+        "ratio_named_entities_per_token": 0.03592814371257485,
+        "ratio_named_entities_per_verb": 0.2727272727272727,
+        "total_token_ratio_named_entities": 0.09580838323353294,
+        "max_size_named_entities": 7,
+        "ratio_subordination_per_token": 0.0718562874251497,
+        "ratio_subordination_per_verb": 0.5454545454545454,
+        "total_token_ratio_subordination": 0.7664670658682635,
+        "max_size_subordination": 28,
+        "max_size_np_pp_modifiers": 4
+    },
+    "sentences": {
+        "0": {
+            "words": {
+                "0": {
+                    "text": "Journal",
+                    "id": 1,
+                    "lemma": "journal",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            4,
+                            2,
+                            5
+                        ],
+                        "texts": [
+                            "d\u00e9gonfl\u00e9",
+                            "d'",
+                            "SEPTEMBRE"
+                        ]
+                    }
+                },
+                "1": {
+                    "text": "d'",
+                    "id": 2,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "un",
+                    "id": 3,
+                    "lemma": "un",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "3": {
+                    "text": "d\u00e9gonfl\u00e9",
+                    "id": 4,
+                    "lemma": "d\u00e9gonfl\u00e9",
+                    "word_length": 8,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 1.0,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1.01,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            2,
+                            5
+                        ],
+                        "texts": [
+                            "d'",
+                            "SEPTEMBRE"
+                        ]
+                    }
+                },
+                "4": {
+                    "text": "SEPTEMBRE",
+                    "id": 5,
+                    "lemma": "SEPTEMBRE",
+                    "word_length": 9,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "5": {
+                    "text": "Mardi",
+                    "id": 6,
+                    "lemma": "mardi",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 9.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.74,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "6": {
+                    "text": "Mettons",
+                    "id": 7,
+                    "lemma": "mettre",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 1.48,
+                    "age_of_acquisition": 5.10344827586207,
+                    "familiarity": 5.35714285714286,
+                    "lexical_frequency": 1083.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            17
+                        ],
+                        "cc": []
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "7": {
+                    "text": "d'",
+                    "id": 8,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "8": {
+                    "text": "abord",
+                    "id": 9,
+                    "lemma": "abord",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19.05,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "9": {
+                    "text": "les",
+                    "id": 10,
+                    "lemma": "le",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 18,
+                    "ortho_neighbors_+freq_cum": 16911.40000000001,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "10": {
+                    "text": "choses",
+                    "id": 11,
+                    "lemma": "chose",
+                    "word_length": 6,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 7.7700000000000005,
+                    "age_of_acquisition": 5.35372636262514,
+                    "familiarity": 5.92857142857143,
+                    "lexical_frequency": 1057.64,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "11": {
+                    "text": "\u00e0",
+                    "id": 12,
+                    "lemma": "\u00e0",
+                    "word_length": 1,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 46,
+                    "ortho_neighbors_+freq_cum": 19149.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19209.05,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "12": {
+                    "text": "le",
+                    "id": 13,
+                    "lemma": "le",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 86631.11,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "13": {
+                    "text": "point:",
+                    "id": 14,
+                    "lemma": "point:",
+                    "word_length": 6,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            12
+                        ],
+                        "texts": [
+                            "\u00e0"
+                        ]
+                    }
+                },
+                "14": {
+                    "text": "il",
+                    "id": 15,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 32.57,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "15": {
+                    "text": "s'",
+                    "id": 16,
+                    "lemma": "se",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 26951.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 6587.77,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "16": {
+                    "text": "agit",
+                    "id": 17,
+                    "lemma": "agir",
+                    "word_length": 4,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 39.35,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 219.73,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "17": {
+                    "text": "d'",
+                    "id": 18,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "18": {
+                    "text": "un",
+                    "id": 19,
+                    "lemma": "un",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "19": {
+                    "text": "CARNET",
+                    "id": 20,
+                    "lemma": "CARNET",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 4.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            27
+                        ],
+                        "cc": []
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            18,
+                            22,
+                            21
+                        ],
+                        "texts": [
+                            "d'",
+                            "BORD",
+                            "DE"
+                        ]
+                    }
+                },
+                "20": {
+                    "text": "DE",
+                    "id": 21,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 61689.729999999996,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "21": {
+                    "text": "BORD",
+                    "id": 22,
+                    "lemma": "BORD",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 9,
+                    "ortho_neighbors_+freq_cum": 149.48,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            21
+                        ],
+                        "texts": [
+                            "DE"
+                        ]
+                    }
+                },
+                "22": {
+                    "text": ",",
+                    "id": 23,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "23": {
+                    "text": "pas",
+                    "id": 24,
+                    "lemma": "pas",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 5687.66,
+                    "age_of_acquisition": 5.03003337041157,
+                    "familiarity": 6.39285714285714,
+                    "lexical_frequency": 8795.14,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "24": {
+                    "text": "d'",
+                    "id": 25,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "25": {
+                    "text": "un",
+                    "id": 26,
+                    "lemma": "un",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "26": {
+                    "text": "journal",
+                    "id": 27,
+                    "lemma": "journal",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            25,
+                            28
+                        ],
+                        "texts": [
+                            "d'",
+                            "intime"
+                        ]
+                    }
+                },
+                "27": {
+                    "text": "intime",
+                    "id": 28,
+                    "lemma": "intime",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 6.9399999999999995,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 34.66,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "28": {
+                    "text": ".",
+                    "id": 29,
+                    "lemma": ".",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 5,
+                "sentence_length": 29,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 1.0,
+                "max_nb_heads": 1,
+                "max_dist_head_to_coord": 10,
+                "ratio_coordination_per_token": 0.06896551724137931,
+                "total_token_ratio_coordination": 0.06896551724137931,
+                "max_size_coordination": 1,
+                "ratio_aux_verbs_per_token": 0.0,
+                "ratio_aux_verbs_per_verb": 0.0,
+                "total_token_ratio_aux_verbs": 0.0,
+                "max_size_aux_verbs": 0,
+                "ratio_named_entities_per_token": 0.06896551724137931,
+                "ratio_named_entities_per_verb": 1.0,
+                "total_token_ratio_named_entities": 0.3448275862068966,
+                "max_size_named_entities": 7,
+                "max_size_np_pp_modifiers": 3,
+                "max_size_subordination": 14,
+                "words_before_verb": 1,
+                "words_after_verb": 5
+            }
+        },
+        "1": {
+            "words": {
+                "0": {
+                    "text": "Je",
+                    "id": 1,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "1": {
+                    "text": "sais",
+                    "id": 2,
+                    "lemma": "savoir",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            26
+                        ],
+                        "cc": [
+                            12
+                        ]
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "bien",
+                    "id": 3,
+                    "lemma": "bien",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "3": {
+                    "text": "ce",
+                    "id": 4,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 1.0,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1.01,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            7
+                        ],
+                        "texts": [
+                            "\u00e9crit"
+                        ]
+                    }
+                },
+                "4": {
+                    "text": "qui",
+                    "id": 5,
+                    "lemma": "qui",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "5": {
+                    "text": "est",
+                    "id": 6,
+                    "lemma": "\u00eatre",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 9.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.74,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "B",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "6": {
+                    "text": "\u00e9crit",
+                    "id": 7,
+                    "lemma": "\u00e9crire",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 1.48,
+                    "age_of_acquisition": 5.10344827586207,
+                    "familiarity": 5.35714285714286,
+                    "lexical_frequency": 1083.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "I",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "7": {
+                    "text": "sur",
+                    "id": 8,
+                    "lemma": "sur",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "8": {
+                    "text": "la",
+                    "id": 9,
+                    "lemma": "le",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19.05,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "9": {
+                    "text": "couverture",
+                    "id": 10,
+                    "lemma": "couverture",
+                    "word_length": 10,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 18,
+                    "ortho_neighbors_+freq_cum": 16911.40000000001,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            8
+                        ],
+                        "texts": [
+                            "sur"
+                        ]
+                    }
+                },
+                "10": {
+                    "text": ",",
+                    "id": 11,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 7.7700000000000005,
+                    "age_of_acquisition": 5.35372636262514,
+                    "familiarity": 5.92857142857143,
+                    "lexical_frequency": 1057.64,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "11": {
+                    "text": "mais",
+                    "id": 12,
+                    "lemma": "mais",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 46,
+                    "ortho_neighbors_+freq_cum": 19149.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19209.05,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "12": {
+                    "text": "quand",
+                    "id": 13,
+                    "lemma": "quand",
+                    "word_length": 5,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 86631.11,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B1",
+                        "B2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "13": {
+                    "text": "maman",
+                    "id": 14,
+                    "lemma": "maman",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "14": {
+                    "text": "est",
+                    "id": 15,
+                    "lemma": "\u00eatre",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 32.57,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "B",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "15": {
+                    "text": "all\u00e9e",
+                    "id": 16,
+                    "lemma": "aller",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 26951.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 6587.77,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "I",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "16": {
+                    "text": "acheter",
+                    "id": 17,
+                    "lemma": "acheter",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 39.35,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 219.73,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2",
+                        "B3"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "17": {
+                    "text": "ce",
+                    "id": 18,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2",
+                        "I3"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "18": {
+                    "text": "truc",
+                    "id": 19,
+                    "lemma": "truc",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I2",
+                        "I3"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "19": {
+                    "text": ",",
+                    "id": 20,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 4.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "20": {
+                    "text": "je",
+                    "id": 21,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 61689.729999999996,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "21": {
+                    "text": "lui",
+                    "id": 22,
+                    "lemma": "lui",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 9,
+                    "ortho_neighbors_+freq_cum": 149.48,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "22": {
+                    "text": "avais",
+                    "id": 23,
+                    "lemma": "avoir",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "B",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "23": {
+                    "text": "pourtant",
+                    "id": 24,
+                    "lemma": "pourtant",
+                    "word_length": 8,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 5687.66,
+                    "age_of_acquisition": 5.03003337041157,
+                    "familiarity": 6.39285714285714,
+                    "lexical_frequency": 8795.14,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "24": {
+                    "text": "CLAIREMENT",
+                    "id": 25,
+                    "lemma": "clairement",
+                    "word_length": 10,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "named_entities_person": true,
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "25": {
+                    "text": "demand\u00e9",
+                    "id": 26,
+                    "lemma": "demander",
+                    "word_length": 7,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "I",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "26": {
+                    "text": "d'",
+                    "id": 27,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "27": {
+                    "text": "en",
+                    "id": 28,
+                    "lemma": "en",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 6.9399999999999995,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 34.66,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "B4"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "28": {
+                    "text": "chercher",
+                    "id": 29,
+                    "lemma": "chercher",
+                    "word_length": 8,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "29": {
+                    "text": "un",
+                    "id": 30,
+                    "lemma": "un",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 10,
+                    "ortho_neighbors_+freq_cum": 73133.47000000002,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            36
+                        ],
+                        "texts": [
+                            "marqu\u00e9"
+                        ]
+                    }
+                },
+                "30": {
+                    "text": "o\u00f9",
+                    "id": 31,
+                    "lemma": "o\u00f9",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 21,
+                    "ortho_neighbors_+freq_cum": 6531.240000000001,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 2003.58,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "B5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "31": {
+                    "text": "ce",
+                    "id": 32,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 6,
+                    "ortho_neighbors_+freq_cum": 1034.59,
+                    "age_of_acquisition": 4.62738095238095,
+                    "familiarity": 4.71428571428571,
+                    "lexical_frequency": 2535.14,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "32": {
+                    "text": "ne",
+                    "id": 33,
+                    "lemma": "ne",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 75077.93000000001,
+                    "age_of_acquisition": 5.10789766407119,
+                    "familiarity": 6.71428571428571,
+                    "lexical_frequency": 2958.58,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "33": {
+                    "text": "serait",
+                    "id": 34,
+                    "lemma": "\u00eatre",
+                    "word_length": 6,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 19060.42,
+                    "age_of_acquisition": 7.23915461624027,
+                    "familiarity": 6.64285714285714,
+                    "lexical_frequency": 7923.24,
+                    "complexity": 2,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "B",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "34": {
+                    "text": "pas",
+                    "id": 35,
+                    "lemma": "pas",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 330.07,
+                    "age_of_acquisition": 5.78420467185762,
+                    "familiarity": 6.46428571428571,
+                    "lexical_frequency": 6501.82,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "35": {
+                    "text": "marqu\u00e9",
+                    "id": 36,
+                    "lemma": "marquer",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 6,
+                    "ortho_neighbors_+freq_cum": 36.61,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 341.82,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "I",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "36": {
+                    "text": "\u00ab",
+                    "id": 37,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 548.1900000000002,
+                    "age_of_acquisition": 4.95995550611791,
+                    "familiarity": 6.67857142857143,
+                    "lexical_frequency": 5320.47,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "37": {
+                    "text": "journal",
+                    "id": 38,
+                    "lemma": "journal",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 24555.15,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "38": {
+                    "text": "\u00bb",
+                    "id": 39,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 4.80999994277954,
+                    "lexical_frequency": 62.03,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "39": {
+                    "text": "dessus",
+                    "id": 40,
+                    "lemma": "dessus",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1",
+                        "I4",
+                        "I5"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "40": {
+                    "text": ".",
+                    "id": 41,
+                    "lemma": ".",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 24,
+                    "ortho_neighbors_+freq_cum": 1395.73,
+                    "age_of_acquisition": 5.31479421579533,
+                    "familiarity": 6.71428571428571,
+                    "lexical_frequency": 4463.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 6,
+                "sentence_length": 41,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 1.0,
+                "max_nb_heads": 1,
+                "max_dist_head_to_coord": 24,
+                "ratio_coordination_per_token": 0.024390243902439025,
+                "total_token_ratio_coordination": 0.024390243902439025,
+                "max_size_coordination": 1,
+                "ratio_aux_verbs_per_token": 0.0975609756097561,
+                "ratio_aux_verbs_per_verb": 0.5714285714285714,
+                "total_token_ratio_aux_verbs": 0.1951219512195122,
+                "max_size_aux_verbs": 2,
+                "ratio_named_entities_per_token": 0.024390243902439025,
+                "ratio_named_entities_per_verb": 0.14285714285714285,
+                "total_token_ratio_named_entities": 0.024390243902439025,
+                "max_size_named_entities": 1,
+                "max_size_np_pp_modifiers": 1,
+                "max_size_subordination": 28,
+                "words_before_verb": 1,
+                "words_after_verb": 4
+            }
+        },
+        "2": {
+            "words": {
+                "0": {
+                    "text": "Voil\u00e0",
+                    "id": 1,
+                    "lemma": "voil\u00e0",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "1": {
+                    "text": "le",
+                    "id": 2,
+                    "lemma": "le",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "r\u00e9sultat!",
+                    "id": 3,
+                    "lemma": "r\u00e9sultat!",
+                    "word_length": 9,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 3,
+                "sentence_length": 3,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 0,
+                "max_nb_heads": 0,
+                "max_dist_head_to_coord": 0,
+                "ratio_coordination_per_token": 0.0,
+                "total_token_ratio_coordination": 0.0,
+                "max_size_coordination": 0,
+                "ratio_aux_verbs_per_token": 0.0,
+                "ratio_aux_verbs_per_verb": 0.0,
+                "total_token_ratio_aux_verbs": 0.0,
+                "max_size_aux_verbs": 0,
+                "ratio_named_entities_per_token": 0.0,
+                "ratio_named_entities_per_verb": 0.0,
+                "total_token_ratio_named_entities": 0.0,
+                "max_size_named_entities": 0,
+                "max_size_np_pp_modifiers": 0,
+                "max_size_subordination": 0,
+                "words_before_verb": 0,
+                "words_after_verb": 1
+            }
+        },
+        "3": {
+            "words": {
+                "0": {
+                    "text": "D'",
+                    "id": 1,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "1": {
+                    "text": "ici",
+                    "id": 2,
+                    "lemma": "ici",
+                    "word_length": 3,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "\u00e0",
+                    "id": 3,
+                    "lemma": "\u00e0",
+                    "word_length": 1,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "3": {
+                    "text": "ce",
+                    "id": 4,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 1.0,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1.01,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            1,
+                            3,
+                            9
+                        ],
+                        "texts": [
+                            "D'",
+                            "\u00e0",
+                            "trouve"
+                        ]
+                    }
+                },
+                "4": {
+                    "text": "qu'",
+                    "id": 5,
+                    "lemma": "que",
+                    "word_length": 3,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "5": {
+                    "text": "un",
+                    "id": 6,
+                    "lemma": "un",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 9.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.74,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "6": {
+                    "text": "tar\u00e9",
+                    "id": 7,
+                    "lemma": "tar\u00e9",
+                    "word_length": 4,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 1.48,
+                    "age_of_acquisition": 5.10344827586207,
+                    "familiarity": 5.35714285714286,
+                    "lexical_frequency": 1083.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "7": {
+                    "text": "me",
+                    "id": 8,
+                    "lemma": "se",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "8": {
+                    "text": "trouve",
+                    "id": 9,
+                    "lemma": "trouver",
+                    "word_length": 6,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19.05,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            15
+                        ],
+                        "cc": [
+                            13
+                        ]
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "9": {
+                    "text": "avec",
+                    "id": 10,
+                    "lemma": "avec",
+                    "word_length": 4,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 18,
+                    "ortho_neighbors_+freq_cum": 16911.40000000001,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "10": {
+                    "text": "ce",
+                    "id": 11,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 7.7700000000000005,
+                    "age_of_acquisition": 5.35372636262514,
+                    "familiarity": 5.92857142857143,
+                    "lexical_frequency": 1057.64,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "11": {
+                    "text": "cahier",
+                    "id": 12,
+                    "lemma": "cahier",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 46,
+                    "ortho_neighbors_+freq_cum": 19149.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19209.05,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            10
+                        ],
+                        "texts": [
+                            "avec"
+                        ]
+                    }
+                },
+                "12": {
+                    "text": "et",
+                    "id": 13,
+                    "lemma": "et",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 86631.11,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "13": {
+                    "text": "se",
+                    "id": 14,
+                    "lemma": "se",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "14": {
+                    "text": "fasse",
+                    "id": 15,
+                    "lemma": "faire",
+                    "word_length": 5,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 32.57,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "15": {
+                    "text": "de",
+                    "id": 16,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 26951.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 6587.77,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "16": {
+                    "text": "les",
+                    "id": 17,
+                    "lemma": "le",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 39.35,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 219.73,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "17": {
+                    "text": "id\u00e9es",
+                    "id": 18,
+                    "lemma": "id\u00e9e",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            16,
+                            21,
+                            25
+                        ],
+                        "texts": [
+                            "de",
+                            "TAPETTE",
+                            "PAF"
+                        ]
+                    }
+                },
+                "18": {
+                    "text": "\u2026",
+                    "id": 19,
+                    "lemma": "...",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "19": {
+                    "text": "\u00ab",
+                    "id": 20,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 4.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "20": {
+                    "text": "TAPETTE",
+                    "id": 21,
+                    "lemma": "tapette",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 61689.729999999996,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            25
+                        ],
+                        "texts": [
+                            "PAF"
+                        ]
+                    }
+                },
+                "21": {
+                    "text": "!",
+                    "id": 22,
+                    "lemma": "!",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 9,
+                    "ortho_neighbors_+freq_cum": 149.48,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "22": {
+                    "text": "\u00bb",
+                    "id": 23,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "23": {
+                    "text": "\u00ab",
+                    "id": 24,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 5687.66,
+                    "age_of_acquisition": 5.03003337041157,
+                    "familiarity": 6.39285714285714,
+                    "lexical_frequency": 8795.14,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "24": {
+                    "text": "PAF",
+                    "id": 25,
+                    "lemma": "PAF",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "25": {
+                    "text": "\u00bb",
+                    "id": 26,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "26": {
+                    "text": "Deuzio",
+                    "id": 27,
+                    "lemma": "Deuzio",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "named_entities_person": true,
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "27": {
+                    "text": ",",
+                    "id": 28,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 6.9399999999999995,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 34.66,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "28": {
+                    "text": "je",
+                    "id": 29,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "29": {
+                    "text": "tiens",
+                    "id": 30,
+                    "lemma": "tenir",
+                    "word_length": 5,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 10,
+                    "ortho_neighbors_+freq_cum": 73133.47000000002,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "30": {
+                    "text": "\u00e0",
+                    "id": 31,
+                    "lemma": "\u00e0",
+                    "word_length": 1,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 21,
+                    "ortho_neighbors_+freq_cum": 6531.240000000001,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 2003.58,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "31": {
+                    "text": "pr\u00e9ciser",
+                    "id": 32,
+                    "lemma": "pr\u00e9ciser",
+                    "word_length": 8,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 6,
+                    "ortho_neighbors_+freq_cum": 1034.59,
+                    "age_of_acquisition": 4.62738095238095,
+                    "familiarity": 4.71428571428571,
+                    "lexical_frequency": 2535.14,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "32": {
+                    "text": "que",
+                    "id": 33,
+                    "lemma": "que",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 75077.93000000001,
+                    "age_of_acquisition": 5.10789766407119,
+                    "familiarity": 6.71428571428571,
+                    "lexical_frequency": 2958.58,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "33": {
+                    "text": "c'",
+                    "id": 34,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 19060.42,
+                    "age_of_acquisition": 7.23915461624027,
+                    "familiarity": 6.64285714285714,
+                    "lexical_frequency": 7923.24,
+                    "complexity": 2,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "34": {
+                    "text": "\u00e9tait",
+                    "id": 35,
+                    "lemma": "\u00eatre",
+                    "word_length": 5,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 330.07,
+                    "age_of_acquisition": 5.78420467185762,
+                    "familiarity": 6.46428571428571,
+                    "lexical_frequency": 6501.82,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "35": {
+                    "text": "l'",
+                    "id": 36,
+                    "lemma": "le",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 6,
+                    "ortho_neighbors_+freq_cum": 36.61,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 341.82,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "36": {
+                    "text": "id\u00e9e",
+                    "id": 37,
+                    "lemma": "id\u00e9e",
+                    "word_length": 4,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 548.1900000000002,
+                    "age_of_acquisition": 4.95995550611791,
+                    "familiarity": 6.67857142857143,
+                    "lexical_frequency": 5320.47,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            40,
+                            38,
+                            44
+                        ],
+                        "texts": [
+                            "m\u00e8re",
+                            "de",
+                            "mienne"
+                        ]
+                    }
+                },
+                "37": {
+                    "text": "de",
+                    "id": 38,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 24555.15,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "38": {
+                    "text": "ma",
+                    "id": 39,
+                    "lemma": "son",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 4.80999994277954,
+                    "lexical_frequency": 62.03,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "39": {
+                    "text": "m\u00e8re",
+                    "id": 40,
+                    "lemma": "m\u00e8re",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            38,
+                            44
+                        ],
+                        "texts": [
+                            "de",
+                            "mienne"
+                        ]
+                    }
+                },
+                "40": {
+                    "text": ",",
+                    "id": 41,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 24,
+                    "ortho_neighbors_+freq_cum": 1395.73,
+                    "age_of_acquisition": 5.31479421579533,
+                    "familiarity": 6.71428571428571,
+                    "lexical_frequency": 4463.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "41": {
+                    "text": "pas",
+                    "id": 42,
+                    "lemma": "pas",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 1,
+                    "ortho_neighbors_+freq_cum": 107.13,
+                    "age_of_acquisition": 5.706340378198,
+                    "familiarity": 6.78571428571429,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "42": {
+                    "text": "la",
+                    "id": 43,
+                    "lemma": "le",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 1,
+                    "ortho_neighbors_+freq_cum": 0.16,
+                    "age_of_acquisition": -1,
+                    "familiarity": 6.32,
+                    "lexical_frequency": 144.39,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "43": {
+                    "text": "mienne",
+                    "id": 44,
+                    "lemma": "mienne",
+                    "word_length": 6,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 330.07,
+                    "age_of_acquisition": 5.78420467185762,
+                    "familiarity": 6.46428571428571,
+                    "lexical_frequency": 6501.82,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "44": {
+                    "text": ".",
+                    "id": 45,
+                    "lemma": ".",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 11.7,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 2854.93,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 8,
+                "sentence_length": 45,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 1.0,
+                "max_nb_heads": 1,
+                "max_dist_head_to_coord": 6,
+                "ratio_coordination_per_token": 0.022222222222222223,
+                "total_token_ratio_coordination": 0.022222222222222223,
+                "max_size_coordination": 1,
+                "ratio_aux_verbs_per_token": 0.0,
+                "ratio_aux_verbs_per_verb": 0.0,
+                "total_token_ratio_aux_verbs": 0.0,
+                "max_size_aux_verbs": 0,
+                "ratio_named_entities_per_token": 0.022222222222222223,
+                "ratio_named_entities_per_verb": 0.25,
+                "total_token_ratio_named_entities": 0.022222222222222223,
+                "max_size_named_entities": 1,
+                "max_size_np_pp_modifiers": 3,
+                "max_size_subordination": 23,
+                "words_before_verb": 2,
+                "words_after_verb": 2
+            }
+        },
+        "4": {
+            "words": {
+                "0": {
+                    "text": "Mais",
+                    "id": 1,
+                    "lemma": "mais",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "1": {
+                    "text": "si",
+                    "id": 2,
+                    "lemma": "si",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B0",
+                        "B1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "elle",
+                    "id": 3,
+                    "lemma": "il",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "3": {
+                    "text": "croit",
+                    "id": 4,
+                    "lemma": "croire",
+                    "word_length": 5,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 1.0,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1.01,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "4": {
+                    "text": "que",
+                    "id": 5,
+                    "lemma": "que",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "5": {
+                    "text": "je",
+                    "id": 6,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 9.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.74,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "6": {
+                    "text": "vais",
+                    "id": 7,
+                    "lemma": "aller",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 1.48,
+                    "age_of_acquisition": 5.10344827586207,
+                    "familiarity": 5.35714285714286,
+                    "lexical_frequency": 1083.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "7": {
+                    "text": "\u00e9crire",
+                    "id": 8,
+                    "lemma": "\u00e9crire",
+                    "word_length": 6,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "8": {
+                    "text": "l\u00e0-dedans",
+                    "id": 9,
+                    "lemma": "l\u00e0-dedans",
+                    "word_length": 9,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19.05,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "9": {
+                    "text": "ce",
+                    "id": 10,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 18,
+                    "ortho_neighbors_+freq_cum": 16911.40000000001,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            14
+                        ],
+                        "texts": [
+                            "ressens"
+                        ]
+                    }
+                },
+                "10": {
+                    "text": "que",
+                    "id": 11,
+                    "lemma": "que",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 7.7700000000000005,
+                    "age_of_acquisition": 5.35372636262514,
+                    "familiarity": 5.92857142857143,
+                    "lexical_frequency": 1057.64,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "B2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "11": {
+                    "text": "je",
+                    "id": 12,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 46,
+                    "ortho_neighbors_+freq_cum": 19149.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19209.05,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "12": {
+                    "text": "\u00ab",
+                    "id": 13,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 86631.11,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "13": {
+                    "text": "ressens",
+                    "id": 14,
+                    "lemma": "ressensir",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            17
+                        ],
+                        "cc": [
+                            16
+                        ]
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "14": {
+                    "text": "\u00bb",
+                    "id": 15,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 32.57,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "15": {
+                    "text": "ou",
+                    "id": 16,
+                    "lemma": "ou",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 26951.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 6587.77,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "16": {
+                    "text": "quoi",
+                    "id": 17,
+                    "lemma": "quoi",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 39.35,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 219.73,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1",
+                        "I2"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "17": {
+                    "text": ",",
+                    "id": 18,
+                    "lemma": ",",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "18": {
+                    "text": "elle",
+                    "id": 19,
+                    "lemma": "il",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "19": {
+                    "text": "se",
+                    "id": 20,
+                    "lemma": "se",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 4.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "20": {
+                    "text": "trompe",
+                    "id": 21,
+                    "lemma": "tromper",
+                    "word_length": 6,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 61689.729999999996,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "21": {
+                    "text": "totalement",
+                    "id": 22,
+                    "lemma": "totalement",
+                    "word_length": 10,
+                    "word_syllables": 3,
+                    "ortho_neighbors": 9,
+                    "ortho_neighbors_+freq_cum": 149.48,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "22": {
+                    "text": ".",
+                    "id": 23,
+                    "lemma": ".",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 8,
+                "sentence_length": 23,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 1.0,
+                "max_nb_heads": 1,
+                "max_dist_head_to_coord": 3,
+                "ratio_coordination_per_token": 0.043478260869565216,
+                "total_token_ratio_coordination": 0.043478260869565216,
+                "max_size_coordination": 1,
+                "ratio_aux_verbs_per_token": 0.0,
+                "ratio_aux_verbs_per_verb": 0.0,
+                "total_token_ratio_aux_verbs": 0.0,
+                "max_size_aux_verbs": 0,
+                "ratio_named_entities_per_token": 0.0,
+                "ratio_named_entities_per_verb": 0.0,
+                "total_token_ratio_named_entities": 0.0,
+                "max_size_named_entities": 0,
+                "max_size_np_pp_modifiers": 1,
+                "max_size_subordination": 21,
+                "words_before_verb": 4,
+                "words_after_verb": 2
+            }
+        },
+        "5": {
+            "words": {
+                "0": {
+                    "text": "Faut",
+                    "id": 1,
+                    "lemma": "falloir",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.59,
+                    "lexical_frequency": 197.7,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "1": {
+                    "text": "pas",
+                    "id": 2,
+                    "lemma": "pas",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "2": {
+                    "text": "s'",
+                    "id": 3,
+                    "lemma": "se",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "B0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "3": {
+                    "text": "attendre",
+                    "id": 4,
+                    "lemma": "attendre",
+                    "word_length": 8,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 1.0,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1.01,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "4": {
+                    "text": "\u00e0",
+                    "id": 5,
+                    "lemma": "\u00e0",
+                    "word_length": 1,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "5": {
+                    "text": "ce",
+                    "id": 6,
+                    "lemma": "ce",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 9.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": 5.74,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            5,
+                            9
+                        ],
+                        "texts": [
+                            "\u00e0",
+                            "mette"
+                        ]
+                    }
+                },
+                "6": {
+                    "text": "que",
+                    "id": 7,
+                    "lemma": "que",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 1.48,
+                    "age_of_acquisition": 5.10344827586207,
+                    "familiarity": 5.35714285714286,
+                    "lexical_frequency": 1083.72,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "B1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "7": {
+                    "text": "je",
+                    "id": 8,
+                    "lemma": "il",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": "postclitic",
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "8": {
+                    "text": "mette",
+                    "id": 9,
+                    "lemma": "mettre",
+                    "word_length": 5,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 0,
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19.05,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "9": {
+                    "text": "de",
+                    "id": 10,
+                    "lemma": "de",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 18,
+                    "ortho_neighbors_+freq_cum": 16911.40000000001,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "10": {
+                    "text": "les",
+                    "id": 11,
+                    "lemma": "le",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 3,
+                    "ortho_neighbors_+freq_cum": 7.7700000000000005,
+                    "age_of_acquisition": 5.35372636262514,
+                    "familiarity": 5.92857142857143,
+                    "lexical_frequency": 1057.64,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "11": {
+                    "text": "\u00ab",
+                    "id": 12,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 46,
+                    "ortho_neighbors_+freq_cum": 19149.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 19209.05,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "12": {
+                    "text": "Cher",
+                    "id": 13,
+                    "lemma": "cher",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 15,
+                    "ortho_neighbors_+freq_cum": 86631.11,
+                    "age_of_acquisition": 4.07230255839822,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 18310.95,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "13": {
+                    "text": "journal",
+                    "id": 14,
+                    "lemma": "journal",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {
+                        "conjuncts": [
+                            22
+                        ],
+                        "cc": [
+                            18
+                        ]
+                    },
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            10,
+                            13,
+                            17,
+                            16
+                        ],
+                        "texts": [
+                            "de",
+                            "Cher",
+                            "ci",
+                            "par"
+                        ]
+                    }
+                },
+                "14": {
+                    "text": "\u00bb",
+                    "id": 15,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 4,
+                    "ortho_neighbors_+freq_cum": 32.57,
+                    "age_of_acquisition": 4.35483870967742,
+                    "familiarity": 6.92857142857143,
+                    "lexical_frequency": 15832.09,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "15": {
+                    "text": "par",
+                    "id": 16,
+                    "lemma": "par",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 8,
+                    "ortho_neighbors_+freq_cum": 26951.1,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 6587.77,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "16": {
+                    "text": "ci",
+                    "id": 17,
+                    "lemma": "ci",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 5,
+                    "ortho_neighbors_+freq_cum": 39.35,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 219.73,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            16
+                        ],
+                        "texts": [
+                            "par"
+                        ]
+                    }
+                },
+                "17": {
+                    "text": "et",
+                    "id": 18,
+                    "lemma": "et",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "18": {
+                    "text": "des",
+                    "id": 19,
+                    "lemma": "un",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "19": {
+                    "text": "\u00ab",
+                    "id": 20,
+                    "lemma": "\u00ab",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 2,
+                    "ortho_neighbors_+freq_cum": 4.03,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "20": {
+                    "text": "Cher",
+                    "id": 21,
+                    "lemma": "cher",
+                    "word_length": 4,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 19,
+                    "ortho_neighbors_+freq_cum": 61689.729999999996,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "B",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "21": {
+                    "text": "journal",
+                    "id": 22,
+                    "lemma": "journal",
+                    "word_length": 7,
+                    "word_syllables": 2,
+                    "ortho_neighbors": 9,
+                    "ortho_neighbors_+freq_cum": 149.48,
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": 3,
+                    "hapax_legomena_lemma": 1,
+                    "concrete": false,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "I",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            21,
+                            25,
+                            24
+                        ],
+                        "texts": [
+                            "Cher",
+                            "l\u00e0",
+                            "par"
+                        ]
+                    }
+                },
+                "22": {
+                    "text": "\u00bb",
+                    "id": 23,
+                    "lemma": "\u00bb",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": "na",
+                    "ortho_neighbors_+freq_cum": "na",
+                    "age_of_acquisition": -1,
+                    "familiarity": -1,
+                    "lexical_frequency": 1e-10,
+                    "complexity": "na",
+                    "hapax_legomena_lemma": "na",
+                    "concrete": false,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "23": {
+                    "text": "par",
+                    "id": 24,
+                    "lemma": "par",
+                    "word_length": 3,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 17,
+                    "ortho_neighbors_+freq_cum": 5687.66,
+                    "age_of_acquisition": 5.03003337041157,
+                    "familiarity": 6.39285714285714,
+                    "lexical_frequency": 8795.14,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                },
+                "24": {
+                    "text": "l\u00e0",
+                    "id": 25,
+                    "lemma": "l\u00e0",
+                    "word_length": 2,
+                    "word_syllables": 1,
+                    "ortho_neighbors": 14,
+                    "ortho_neighbors_+freq_cum": 54107.80999999998,
+                    "age_of_acquisition": 4.81646273637375,
+                    "familiarity": 6.89285714285714,
+                    "lexical_frequency": 38928.92,
+                    "complexity": 4,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": true,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [
+                        "I0",
+                        "I1"
+                    ],
+                    "np_pp_modifiers": {
+                        "ids": [
+                            24
+                        ],
+                        "texts": [
+                            "par"
+                        ]
+                    }
+                },
+                "25": {
+                    "text": ".",
+                    "id": 26,
+                    "lemma": ".",
+                    "word_length": 1,
+                    "word_syllables": 0,
+                    "ortho_neighbors": 7,
+                    "ortho_neighbors_+freq_cum": 15126.64,
+                    "age_of_acquisition": 3.46162402669633,
+                    "familiarity": 6.75,
+                    "lexical_frequency": 13550.68,
+                    "complexity": 1,
+                    "hapax_legomena_lemma": 0,
+                    "concrete": true,
+                    "sophisticated": false,
+                    "passive": "O",
+                    "coordination": {},
+                    "clitic_type": false,
+                    "aux_verbs": "O",
+                    "named_entities": "O",
+                    "subordination": [],
+                    "np_pp_modifiers": {
+                        "ids": [],
+                        "texts": []
+                    }
+                }
+            },
+            "features": {
+                "parse_depth": 8,
+                "sentence_length": 26,
+                "ratio_passive_per_token": 0.0,
+                "ratio_passive_per_verb": 0.0,
+                "total_token_ratio_passive": 0.0,
+                "max_size_passive": 0,
+                "ratio_heads_per_token": 1.0,
+                "max_nb_heads": 1,
+                "max_dist_head_to_coord": 8,
+                "ratio_coordination_per_token": 0.038461538461538464,
+                "total_token_ratio_coordination": 0.038461538461538464,
+                "max_size_coordination": 1,
+                "ratio_aux_verbs_per_token": 0.0,
+                "ratio_aux_verbs_per_verb": 0.0,
+                "total_token_ratio_aux_verbs": 0.0,
+                "max_size_aux_verbs": 0,
+                "ratio_named_entities_per_token": 0.07692307692307693,
+                "ratio_named_entities_per_verb": 0.6666666666666666,
+                "total_token_ratio_named_entities": 0.15384615384615385,
+                "max_size_named_entities": 2,
+                "max_size_np_pp_modifiers": 4,
+                "max_size_subordination": 23,
+                "words_before_verb": 0,
+                "words_after_verb": 3
+            }
+        }
+    }
+}
