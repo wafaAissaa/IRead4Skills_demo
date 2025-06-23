@@ -6,7 +6,9 @@ import os
 from collections import Counter
 from sklearn.preprocessing import StandardScaler
 from sklearn.mixture import GaussianMixture
+from sklearn.model_selection import StratifiedKFold, train_test_split
 from sklearn.metrics import f1_score, accuracy_score, classification_report, confusion_matrix
+
 
 
 features = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'word_length', 'word_syllables'],
@@ -35,6 +37,12 @@ features = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'wo
 df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
+
+
+def mean_absolute_difference(prediction, gt):
+    prediction = np.array(prediction)
+    gt = np.array(gt)
+    return np.mean(np.abs(prediction - gt))
 
 
 def find_full_key_path(d, target_key, path=None):
@@ -67,8 +75,7 @@ def get_data(outputs_json_path, yardstick):
 
     keys_paths = get_keys_paths(yardstick)
     for index, row in df.iterrows():
-        print(index)
-        if index == 2074: continue
+        #print(index)
         file_path = os.path.join(outputs_json_path, f"{index}.json")
         with open(file_path, 'r') as file:
             data = json.load(file)
@@ -76,7 +83,7 @@ def get_data(outputs_json_path, yardstick):
         # Extract features
         x = []
         for feat in features[yardstick]:
-            print(feat)
+            #print(feat)
             path_in_dico = keys_paths[feat]
             #print(path_in_dico)
             # print(find_full_key_path(thresholds, feat))
@@ -187,11 +194,171 @@ def train_model(X, y, yardstick):
     print("Confusion Matrix:\n", cm_df)
 
 
+
+
+def train_model_crossval(X, y, yardstick, n_splits=5):
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=2)
+    all_y_true, all_y_pred = [], []
+    all_y_train_true, all_y_train_pred = [], []
+
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
+        print(f"\n--- Fold {fold + 1} ---")
+        best_gmm_models = {}
+        best_params = {}
+
+        X_trainval_scaled, y_trainval = X_scaled[train_idx], y[train_idx]
+        X_test_scaled, y_test = X_scaled[test_idx], y[test_idx]
+
+        # Split training data into train and validation
+        X_train_scaled, X_val_scaled, y_train, y_val = train_test_split(
+            X_trainval_scaled, y_trainval, test_size=0.2, stratify=y_trainval, random_state=2)
+
+        # Train GMMs per class using validation BIC
+        classes = np.unique(y_train)
+
+        # Compute class priors from training data
+        class_counts = Counter(y)
+        total_samples = len(y)
+        class_priors = {cls: np.log(class_counts[cls] / total_samples) for cls in classes}
+        #print("class_priors:\n", class_priors)
+
+        for cls in classes:
+            X_cls_train = X_train_scaled[y_train == cls]
+            X_cls_val = X_val_scaled[y_val == cls]
+            lowest_bic = np.inf
+            best_gmm = None
+            best_setting = None
+
+            for n in range(1, 6):
+                for cov_type in ['full', 'tied', 'diag', 'spherical']:
+                    gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=10)
+                    gmm.fit(X_cls_train)
+                    bic = gmm.bic(X_cls_val)
+                    if bic < lowest_bic:
+                        lowest_bic = bic
+                        best_gmm = gmm
+                        best_setting = {'n_components': n, 'covariance_type': cov_type}
+
+            best_gmm_models[cls] = best_gmm
+            best_params[cls] = best_setting
+            #print(f"Best GMM for class {cls}: {best_setting} with BIC={lowest_bic:.2f}")
+
+
+        # Predict on training set
+        y_train_pred_fold = []
+        for x in X_train_scaled:
+            log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls]
+                               for cls, gmm in best_gmm_models.items()}
+            predicted_class = max(log_likelihoods, key=log_likelihoods.get)
+            y_train_pred_fold.append(predicted_class)
+
+        all_y_train_true.extend(y_train)
+        all_y_train_pred.extend(y_train_pred_fold)
+
+        report = classification_report(y_train, y_train_pred_fold, zero_division=0)
+        #print("\nCross-validated TRAIN Classification Report:\n", report)
+
+        # Predict on test set
+        y_pred_fold = []
+        for x in X_test_scaled:
+            log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls]
+                               for cls, gmm in best_gmm_models.items()}
+            predicted_class = max(log_likelihoods, key=log_likelihoods.get)
+            y_pred_fold.append(predicted_class)
+
+        all_y_true.extend(y_test)
+        all_y_pred.extend(y_pred_fold)
+
+        report = classification_report(y_test, y_pred_fold, zero_division=0)
+        #print("\nCross-validated TEST Classification Report:\n", report)
+
+
+    # Final evaluation
+    accuracy = accuracy_score(all_y_true, all_y_pred)
+    print(f"\nCross-validated TEST prediction accuracy: {accuracy:.3f}")
+
+    f1_macro = f1_score(all_y_true, all_y_pred, average='macro', zero_division=0)
+    print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+
+    report = classification_report(all_y_true, all_y_pred, zero_division=0)
+    #print("\nCross-validated TEST Classification Report:\n", report)
+
+    cm = confusion_matrix(all_y_true, all_y_pred, labels=np.unique(y))
+    cm_df = pd.DataFrame(cm, index=[f"True: {c}" for c in np.unique(y)],
+                         columns=[f"Pred: {c}" for c in np.unique(y)])
+    #print("Cross-validated TEST Confusion Matrix:\n", cm_df)
+
+
+
+def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+    all_y_true, all_y_pred = [], []
+
+    for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
+        print(f"\n--- Fold {fold + 1} ---")
+        X_train, y_train = X[train_idx], y[train_idx]
+        X_test, y_test = X[test_idx], y[test_idx]
+
+        # Standardize features
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_test_scaled = scaler.transform(X_test)
+
+        # Train one GMM per class on all features
+        classes = np.unique(y_train)
+        gmm_models = {}
+        for cls in classes:
+            X_cls = X_train_scaled[y_train == cls]
+            gmm = GaussianMixture(n_components=1, covariance_type='full', n_init=5, random_state=42)
+            gmm.fit(X_cls)
+            gmm_models[cls] = gmm
+            print(f"Trained joint GMM for class {cls} on {len(X_cls)} samples.")
+
+        # Compute class priors
+        if use_priors:
+            class_counts = Counter(y_train)
+            total_samples = len(y_train)
+            class_priors = {cls: np.log(class_counts[cls] / total_samples) for cls in classes}
+        else:
+            class_priors = {cls: 0.0 for cls in classes}
+        print("class_priors:\n", class_priors)
+
+        # Predict on test set
+        y_pred_fold = []
+        for x in X_test_scaled:
+            log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls]
+                               for cls, gmm in gmm_models.items()}
+            predicted_class = max(log_likelihoods, key=log_likelihoods.get)
+            y_pred_fold.append(predicted_class)
+
+        all_y_true.extend(y_test)
+        all_y_pred.extend(y_pred_fold)
+
+    # Evaluation
+    accuracy = accuracy_score(all_y_true, all_y_pred)
+    f1_macro = f1_score(all_y_true, all_y_pred, average='macro', zero_division=0)
+    report = classification_report(all_y_true, all_y_pred, zero_division=0)
+    cm = confusion_matrix(all_y_true, all_y_pred, labels=np.unique(y))
+    cm_df = pd.DataFrame(cm, index=[f"True: {c}" for c in np.unique(y)],
+                         columns=[f"Pred: {c}" for c in np.unique(y)])
+
+    print(f"\nCross-validated TEST prediction accuracy: {accuracy:.3f}")
+    print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+    print("\nClassification Report:\n", report)
+    print("Confusion Matrix:\n", cm_df)
+
+
 if __name__ == "__main__":
     # Work in progress: split to train, val, test sets
     outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
-    # 'structure', 'lexicon','syntax', 'semantics'
-    yardstick = 'syntax'
-    X, y = get_data(outputs_json_path, yardstick)
-    train_model(X, y, yardstick)
+    yardsticks = ['structure', 'lexicon','syntax', 'semantics']
+    #yardstick = 'lexicon'
+    for yardstick in yardsticks:
+        X, y = get_data(outputs_json_path, yardstick)
+        #train_model(X, y, yardstick)
+        print("----------------CrossVal---%s-------------"%yardstick)
+        train_model_crossval(X, y, yardstick, n_splits=5)
 

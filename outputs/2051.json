@@ -5475,7 +5475,7 @@
                     "age_of_acquisition": -1,
                     "familiarity": -1,
                     "lexical_frequency": 448.99,
-                    "complexity": 4,
+                    "complexity": 1,
                     "hapax_legomena_lemma": 1,
                     "concrete": false,
                     "sophisticated": true,
