@@ -1,0 +1,2 @@
+Structure Mean Abs Diff	Structure Acc	Structure Macro F1	Lexicon Mean Abs Diff	Lexicon Acc	Lexicon Macro F1	Syntax Mean Abs Diff	Syntax Acc	Syntax Macro F1	Semantics Mean Abs Diff	Semantics Acc	Semantics Macro F1
+0.459	0.563	0.394	0.461	0.567	0.387	0.595	0.485	0.304	0.623	0.446	0.217

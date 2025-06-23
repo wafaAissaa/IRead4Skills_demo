@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import os
 from collections import Counter
+from scipy.stats import skew, kurtosis
 from sklearn.preprocessing import StandardScaler
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import StratifiedKFold, train_test_split
@@ -37,12 +38,64 @@ features = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'wo
 df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
+level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 
 
-def mean_absolute_difference(prediction, gt):
-    prediction = np.array(prediction)
-    gt = np.array(gt)
-    return np.mean(np.abs(prediction - gt))
+def save_results_to_csv(results, filename="formatted_results.csv"):
+
+    # Flatten and organize the data
+    data = [
+        round(results['structure']['mad'], 3), round(results['structure']['acc'], 3), round(results['structure']['macro-F1'], 3),
+        round(results['lexicon']['mad'], 3), round(results['lexicon']['acc'], 3), round(results['lexicon']['macro-F1'], 3),
+        round(results['syntax']['mad'], 3), round(results['syntax']['acc'], 3), round(results['syntax']['macro-F1'], 3),
+        round(results['semantics']['mad'], 3), round(results['semantics']['acc'], 3), round(results['semantics']['macro-F1'], 3),
+    ]
+    print(data)
+    columns = [
+        'Structure mad', 'Structure acc', 'Structure macro-F1',
+        'Lexicon mad', 'Lexicon acc', 'Lexicon macro-F1',
+        'Syntax mad', 'Syntax acc', 'Syntax macro-F1',
+        'Semantics mad', 'Semantics acc', 'Semantics macro-F1',
+    ]
+
+    # Create DataFrame and save
+    df = pd.DataFrame([data], columns=columns)
+    df.to_csv(filename, index=False, sep='\t')
+
+
+def mean_absolute_difference(prediction, ref):
+    pred_levels = [level_to_int[label] for label in prediction]
+    ref_levels = [level_to_int[label] for label in ref]
+    pred_levels = np.array(pred_levels)
+    ref_levels = np.array(ref_levels)
+    return np.mean(np.abs(pred_levels - ref_levels))
+
+
+def aggregation(feature_vector, type="mean"):
+    if type == "mean":
+        return [np.mean(feature_vector)]
+    elif type == "mean+std":
+        return [np.mean(feature_vector), np.std(feature_vector)]
+    elif type == "mean+std+per+skew":
+        return [
+            np.mean(feature_vector),
+            np.std(feature_vector),
+            np.percentile(feature_vector, 25),
+            np.percentile(feature_vector, 75),
+            np.percentile(feature_vector, 90),
+            skew(feature_vector),
+        ]
+    elif type == "full":
+        return [
+            np.mean(feature_vector),
+            np.std(feature_vector),
+            np.max(feature_vector),
+            np.percentile(feature_vector, 25),
+            np.percentile(feature_vector, 75),
+            np.percentile(feature_vector, 90),
+            skew(feature_vector),
+            kurtosis(feature_vector)
+        ]
 
 
 def find_full_key_path(d, target_key, path=None):
@@ -96,8 +149,8 @@ def get_data(outputs_json_path, yardstick):
                 xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
                 #print(feat, xi)
                 xi = [x for x in xi if x not in ['-1', 'na']] # to replace it to -1 for age of aquisition
-                xi = np.mean(xi)
-                x.append(xi)
+                xi = aggregation(xi, type='mean')
+                x.extend(xi)
             elif path_in_dico.count('0') == 2:
                 xi = [tmp['sentences'][str(s)]['words'][str(w)][feat]
                       for s in range(len(tmp['sentences']))
@@ -109,8 +162,8 @@ def get_data(outputs_json_path, yardstick):
                 # elif featu in ['complexity', 'age_of_acquisition']:
                 #    xi = np.percentile(xi, 80)
                 # else:
-                xi = np.mean(xi)
-                x.append(xi)
+                xi = aggregation(xi, type='mean')
+                x.extend(xi)
 
         X_list.append(x)
         yi = row['classe']
@@ -195,8 +248,7 @@ def train_model(X, y, yardstick):
 
 
 
-
-def train_model_crossval(X, y, yardstick, n_splits=5):
+def train_model_crossval(X, y, yardstick, results, n_splits=5):
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=2)
     all_y_true, all_y_pred = [], []
     all_y_train_true, all_y_train_pred = [], []
@@ -204,8 +256,9 @@ def train_model_crossval(X, y, yardstick, n_splits=5):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
+
     for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
-        print(f"\n--- Fold {fold + 1} ---")
+        print(f"--- Fold {fold + 1} ---")
         best_gmm_models = {}
         best_params = {}
 
@@ -277,11 +330,15 @@ def train_model_crossval(X, y, yardstick, n_splits=5):
 
 
     # Final evaluation
+    mad = mean_absolute_difference(all_y_true, all_y_pred)
+    print(f"Cross-validated TEST prediction mad: {mad:.3f}")
+    results[yardstick]['mad'] = mad
     accuracy = accuracy_score(all_y_true, all_y_pred)
-    print(f"\nCross-validated TEST prediction accuracy: {accuracy:.3f}")
-
+    print(f"Cross-validated TEST prediction accuracy: {accuracy:.3f}")
+    results[yardstick]['acc'] = accuracy
     f1_macro = f1_score(all_y_true, all_y_pred, average='macro', zero_division=0)
     print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+    results[yardstick]['macro-F1'] = f1_macro
 
     report = classification_report(all_y_true, all_y_pred, zero_division=0)
     #print("\nCross-validated TEST Classification Report:\n", report)
@@ -289,9 +346,9 @@ def train_model_crossval(X, y, yardstick, n_splits=5):
     cm = confusion_matrix(all_y_true, all_y_pred, labels=np.unique(y))
     cm_df = pd.DataFrame(cm, index=[f"True: {c}" for c in np.unique(y)],
                          columns=[f"Pred: {c}" for c in np.unique(y)])
-    #print("Cross-validated TEST Confusion Matrix:\n", cm_df)
+    # print("Cross-validated TEST Confusion Matrix:\n", cm_df)
 
-
+    return results
 
 def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
@@ -346,7 +403,7 @@ def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
                          columns=[f"Pred: {c}" for c in np.unique(y)])
 
     print(f"\nCross-validated TEST prediction accuracy: {accuracy:.3f}")
-    print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+    print(f"\nCross-validated TEST macro F1 score: {f1_macro:.3f}")
     print("\nClassification Report:\n", report)
     print("Confusion Matrix:\n", cm_df)
 
@@ -355,10 +412,12 @@ if __name__ == "__main__":
     # Work in progress: split to train, val, test sets
     outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
     yardsticks = ['structure', 'lexicon','syntax', 'semantics']
-    #yardstick = 'lexicon'
+    # yardstick = 'lexicon'
+    results = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
     for yardstick in yardsticks:
         X, y = get_data(outputs_json_path, yardstick)
-        #train_model(X, y, yardstick)
+        # train_model(X, y, yardstick)
         print("----------------CrossVal---%s-------------"%yardstick)
-        train_model_crossval(X, y, yardstick, n_splits=5)
-
+        results = train_model_crossval(X, y, yardstick, results, n_splits=5)
+        print(results)
+    save_results_to_csv(results)
