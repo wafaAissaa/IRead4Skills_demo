@@ -3,6 +3,8 @@ import pickle
 import pandas as pd
 import json
 import os
+import itertools
+import copy
 from collections import Counter
 from scipy.stats import skew, kurtosis
 from sklearn.preprocessing import StandardScaler
@@ -41,26 +43,53 @@ df['classe'] = df['gold_score_20_label'].map(classes_to_level)
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 
 
-def save_results_to_csv(results, filename="formatted_results.csv"):
+RESULTS_DICO = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
 
-    # Flatten and organize the data
+
+import pandas as pd
+
+def save_results_to_csv(results, filename, random_state, prior, aggregation_type ):
+    """
+    Save one row of results to a CSV file, where each row represents a config.
+
+    Parameters:
+        results (dict): Evaluation results by yardstick.
+        filename (str): Path to the CSV file.
+        prior (str): Prior type used in the model (e.g., 'uniform', 'empirical').
+        aggregation_type (str): Type of aggregation used.
+        random_state (int): Random seed used for cross-validation.
+    """
+    # Flatten the result data
     data = [
         round(results['structure']['mad'], 3), round(results['structure']['acc'], 3), round(results['structure']['macro-F1'], 3),
         round(results['lexicon']['mad'], 3), round(results['lexicon']['acc'], 3), round(results['lexicon']['macro-F1'], 3),
         round(results['syntax']['mad'], 3), round(results['syntax']['acc'], 3), round(results['syntax']['macro-F1'], 3),
         round(results['semantics']['mad'], 3), round(results['semantics']['acc'], 3), round(results['semantics']['macro-F1'], 3),
     ]
-    print(data)
-    columns = [
+
+    config_info = [random_state, prior, aggregation_type ]
+    row = config_info + data
+
+    # Define column names
+    columns = ['RandomState', 'Prior', 'Aggregation' ] + [
         'Structure mad', 'Structure acc', 'Structure macro-F1',
         'Lexicon mad', 'Lexicon acc', 'Lexicon macro-F1',
         'Syntax mad', 'Syntax acc', 'Syntax macro-F1',
         'Semantics mad', 'Semantics acc', 'Semantics macro-F1',
     ]
 
-    # Create DataFrame and save
-    df = pd.DataFrame([data], columns=columns)
+    # Create DataFrame for a single row
+    df = pd.DataFrame([row], columns=columns)
+
+    # Append to CSV or create it if it doesn't exist
+    try:
+        existing_df = pd.read_csv(filename, sep='\t')
+        df = pd.concat([existing_df, df], ignore_index=True)
+    except FileNotFoundError:
+        pass  # file will be created below
+
     df.to_csv(filename, index=False, sep='\t')
+
 
 
 def mean_absolute_difference(prediction, ref):
@@ -71,7 +100,8 @@ def mean_absolute_difference(prediction, ref):
     return np.mean(np.abs(pred_levels - ref_levels))
 
 
-def aggregation(feature_vector, type="mean"):
+def aggregate(feature_vector, type="mean"):
+
     if type == "mean":
         return [np.mean(feature_vector)]
     elif type == "mean+std":
@@ -83,7 +113,17 @@ def aggregation(feature_vector, type="mean"):
             np.percentile(feature_vector, 25),
             np.percentile(feature_vector, 75),
             np.percentile(feature_vector, 90),
-            skew(feature_vector),
+            skew(feature_vector) if not np.isnan(skew(feature_vector)) else 0.0,
+        ]
+    elif type == "mean+std+max+per+skew":
+        return [
+            np.mean(feature_vector),
+            np.std(feature_vector),
+            np.max(feature_vector),
+            np.percentile(feature_vector, 25),
+            np.percentile(feature_vector, 75),
+            np.percentile(feature_vector, 90),
+            skew(feature_vector) if not np.isnan(skew(feature_vector)) else 0.0,
         ]
     elif type == "full":
         return [
@@ -93,8 +133,8 @@ def aggregation(feature_vector, type="mean"):
             np.percentile(feature_vector, 25),
             np.percentile(feature_vector, 75),
             np.percentile(feature_vector, 90),
-            skew(feature_vector),
-            kurtosis(feature_vector)
+            skew(feature_vector) if not np.isnan(skew(feature_vector)) else 0.0,
+            kurtosis(feature_vector) if not np.isnan(kurtosis(feature_vector)) else 0.0,
         ]
 
 
@@ -122,7 +162,7 @@ def get_keys_paths(yardstick):
     return keys_paths
 
 
-def get_data(outputs_json_path, yardstick):
+def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
     X_list = []
     y_list = []
 
@@ -147,32 +187,26 @@ def get_data(outputs_json_path, yardstick):
                 x.append(tmp)
             elif path_in_dico.count('0') == 1:
                 xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
-                #print(feat, xi)
-                xi = [x for x in xi if x not in ['-1', 'na']] # to replace it to -1 for age of aquisition
-                xi = aggregation(xi, type='mean')
+                xi = [x for x in xi if x not in ['-1', 'na']]
+                #print(xi)
+                xi = aggregate(xi, type=aggregation_type)
+                if np.isnan(xi).sum(): print(feat, xi)
                 x.extend(xi)
             elif path_in_dico.count('0') == 2:
                 xi = [tmp['sentences'][str(s)]['words'][str(w)][feat]
                       for s in range(len(tmp['sentences']))
                       for w in range(len(tmp['sentences'][str(s)]['words']))]
-                #print(feat, xi)
-                xi = [x for x in xi if x not in ['-1', 'na']] # to replace it to -1 for age of aquisition
-                # if feat in ['lexical_frequency']: # maybe do this later instead of mean
-                #    xi = np.percentile(xi, 20)
-                # elif featu in ['complexity', 'age_of_acquisition']:
-                #    xi = np.percentile(xi, 80)
-                # else:
-                xi = aggregation(xi, type='mean')
+                xi = [x for x in xi if x not in ['-1', 'na']]
+                xi = aggregate(xi, type=aggregation_type)
+                if np.isnan(xi).sum(): print('here', xi)
                 x.extend(xi)
 
         X_list.append(x)
         yi = row['classe']
         y_list.append(yi)
 
-    X = np.array(X_list)
-    y = np.array(y_list)
-    # X: feature matrix (shape [n_samples, n_features])
-    # y: class labels (shape [n_samples])
+    X = np.array(X_list) # X: feature matrix (shape [n_samples, n_features])
+    y = np.array(y_list) # y: class labels (shape [n_samples])
     return X, y
 
 
@@ -248,14 +282,13 @@ def train_model(X, y, yardstick):
 
 
 
-def train_model_crossval(X, y, yardstick, results, n_splits=5):
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=2)
+def train_model_crossval(X, y, yardstick, results, random_state=2, n_splits=5):
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=random_state)
     all_y_true, all_y_pred = [], []
     all_y_train_true, all_y_train_pred = [], []
 
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-
 
     for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
         print(f"--- Fold {fold + 1} ---")
@@ -267,7 +300,7 @@ def train_model_crossval(X, y, yardstick, results, n_splits=5):
 
         # Split training data into train and validation
         X_train_scaled, X_val_scaled, y_train, y_val = train_test_split(
-            X_trainval_scaled, y_trainval, test_size=0.2, stratify=y_trainval, random_state=2)
+            X_trainval_scaled, y_trainval, test_size=0.2, stratify=y_trainval, random_state=random_state)
 
         # Train GMMs per class using validation BIC
         classes = np.unique(y_train)
@@ -409,15 +442,19 @@ def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
 
 
 if __name__ == "__main__":
-    # Work in progress: split to train, val, test sets
+    random_state = 2
+    np.random.seed(random_state)
     outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
     yardsticks = ['structure', 'lexicon','syntax', 'semantics']
-    # yardstick = 'lexicon'
-    results = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
-    for yardstick in yardsticks:
-        X, y = get_data(outputs_json_path, yardstick)
-        # train_model(X, y, yardstick)
-        print("----------------CrossVal---%s-------------"%yardstick)
-        results = train_model_crossval(X, y, yardstick, results, n_splits=5)
-        print(results)
-    save_results_to_csv(results)
+    aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
+    priors = ["uniform", "empirical"]
+    for prior, agg_type in itertools.product(priors, aggregation_types):
+        results = copy.deepcopy(RESULTS_DICO)
+        for yardstick in yardsticks:
+            X, y = get_data(outputs_json_path, yardstick, agg_type)
+            print(f"--- CrossVal | Yardstick: {yardstick} | Prior: {prior} | Aggregation: {agg_type} | Seed: {random_state} ---")
+            results = train_model_crossval(X, y, yardstick, results, random_state=random_state ,n_splits=5)
+            #print(results)
+        #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
+        filename = "./results/results_cv.csv"
+        save_results_to_csv(results, filename=filename, random_state=random_state, prior=prior, aggregation_type=agg_type)
