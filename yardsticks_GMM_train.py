@@ -456,5 +456,5 @@ if __name__ == "__main__":
             results = train_model_crossval(X, y, yardstick, results, random_state=random_state ,n_splits=5)
             #print(results)
         #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
-        filename = "./results/results_cv.csv"
+        filename = "./results/results_gmm_cv.csv"
         save_results_to_csv(results, filename=filename, random_state=random_state, prior=prior, aggregation_type=agg_type)
