@@ -12,15 +12,31 @@ from scipy.stats import norm
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score
 from collections import Counter
+from yardsticks_GMM_train import features, RESULTS_DICO
+from collections import defaultdict
 
 
 df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
+classes = ['N1', 'N2', 'N3', 'N4']
 
 
-RESULTS_DICO = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
+
+def get_data(distributions_json_path='./outputs/distributions.json', yardstick='structure'):
+    with open(distributions_json_path) as json_data:
+        distributions = json.load(json_data)
+
+    distributions_yardstick = defaultdict(dict)
+    for feat in features[yardstick]:
+        for n in ['N1', 'N2', 'N3', 'N4']:
+            for level in distributions[n]:
+                if feat in distributions[n][level]:
+                    distributions_yardstick[n][feat] = distributions[n][level][feat]
+                    break
+
+    return distributions_yardstick
 
 
 def get_prob_threshold_f1(y_labels, y_pred_prob):
@@ -34,7 +50,7 @@ def get_prob_threshold_f1(y_labels, y_pred_prob):
     return best_threshold
 
 
-def get_input_threshold(x_values, y_labels):
+def train_regression(x_values, y_labels):
     # Example data (inputs and labels)
     x_values = np.array(x_values)  # input values (single feature, reshaped)
     y_labels = np.array(y_labels)  # labels (0 or 1)
@@ -53,8 +69,7 @@ def get_input_threshold(x_values, y_labels):
     # plt.axvline(x=model.intercept_ / -model.coef_, color='green', linestyle='--', label='Decision Boundary')
 
     # Desired threshold
-    threshold = 0.5
-    print(threshold)
+    threshold = 0.7
     # Get weight and bias from model
     w = model.coef_[0][0]
     b = model.intercept_[0]
@@ -65,32 +80,42 @@ def get_input_threshold(x_values, y_labels):
     return x_thresh
 
 
+def get_thresholds(distributions, yardstick):
+    thresholds = defaultdict(dict)
 
-
-
-
-
-
-
-
-classes = ['N1', 'N2', 'N3', 'N4']
-values = []
-for classe, dico in data_json.items():
-    for level, dico2 in dico.items():
-        for heuristic, values in dico2.items():
+    for classe, dico in distributions.items():
+        if classe == 'N4': continue
+        for heuristic, values in dico.items():
             x_values = []
             y_labels = []
             # if heuristic != 'words_after_verb': continue
             for c in classes:
-                values = data_json[c][level][heuristic]
+                values = distributions[c][heuristic]
                 x_values += [[v] for v in values]
                 if classes.index(c) > classes.index(classe):
-                    y_labels += [1 for _ in range(len(values))]
+                    y_labels += [1 for _ in range(len(values))] # 1 for complex
                 else:
-                    y_labels += [0 for _ in range(len(values))]
+                    y_labels += [0 for _ in range(len(values))] # 0 for simple
 
-            print(classe, level, heuristic)
-            thresh = get_input_threshold(x_values, y_labels)
-            print(round(thresh, 3))
+            print(classe, heuristic)
+            thresh = train_regression(x_values, y_labels)
+            #print(round(thresh, 3))
 
-            thresh_json[classe][level][heuristic] = round(thresh, 3)
+            thresholds[classe][heuristic] = round(thresh, 3)
+
+    return thresholds
+
+
+
+if __name__ == '__main__':
+    random_state = 2
+    np.random.seed(random_state)
+    outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
+    yardsticks = ['structure', 'lexicon', 'syntax', 'semantics']
+    for yardstick in yardsticks:
+        print(f"--- Yardstick: {yardstick} | Seed: {random_state} ---")
+        distributions = get_data(yardstick=yardstick)
+        print('DONE loading data')
+        thresholds = get_thresholds(distributions, yardstick)
+        print(thresholds)
+

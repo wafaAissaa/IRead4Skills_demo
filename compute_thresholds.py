@@ -28,7 +28,7 @@ document_token_level = {
     "ratio_passive_per_token": None,
     "sophisticated_ratio": None,
     "concrete_ratio": None,
-    "hapax_legomena_ratio_lemma": None,
+    "hapax_legomena_lemma_ratio": None,
     # "p0-p75_freq_ratio": None, missing from output
     # "p0-p75_freq_lemma_ratio": None, missing from output
     "ratio_aux_verbs_per_verb": None,
