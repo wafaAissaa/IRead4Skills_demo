@@ -12,7 +12,7 @@ from scipy.stats import norm
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score
 from collections import Counter
-from yardsticks_GMM_train import features, RESULTS_DICO
+from yardsticks_GMM_train import FEATURES, RESULTS_DICO
 from collections import defaultdict
 
 
@@ -23,8 +23,12 @@ level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 classes = ['N1', 'N2', 'N3', 'N4']
 
 
+def precision_class_1(y_true, y_pred):
+    tp = sum((yt == 1 and yp == 1) for yt, yp in zip(y_true, y_pred))
+    fp = sum((yt == 0 and yp == 1) for yt, yp in zip(y_true, y_pred))
+    return tp / (tp + fp) if (tp + fp) > 0 else 0.0
 
-def get_data(distributions_json_path='./outputs/distributions.json', yardstick='structure'):
+def get_data(distributions_json_path='./outputs/distributions.json', features = FEATURES, yardstick='structure'):
     with open(distributions_json_path) as json_data:
         distributions = json.load(json_data)
 
@@ -64,20 +68,29 @@ def train_regression(x_values, y_labels):
     # Make predictions (probability and class prediction)
     y_pred_prob = model.predict_proba(x_values)[:, 1]  # Probability for class 1
     y_pred_class = model.predict(x_values)  # Predicted class labels
-
+    #print(y_labels)
+    #print(y_pred_class)
+    precision = precision_score(y_labels, y_pred_class, pos_label=1)
+    print(f"Precision (class 1): {precision:.3f}")
+    #precision_tmp = precision_class_1(y_labels, y_pred_class)
+    #print(f"Precision tmp (class 1): {precision_tmp:.3f}")
     # Decision boundary (where probability is 0.5)
     # plt.axvline(x=model.intercept_ / -model.coef_, color='green', linestyle='--', label='Decision Boundary')
 
-    # Desired threshold
     threshold = 0.7
-    # Get weight and bias from model
     w = model.coef_[0][0]
     b = model.intercept_[0]
     # Compute x for desired threshold
+    #print(f"w: {w:.3f}")
     x_thresh = -(np.log(1 / threshold - 1) + b) / w
-    # print(model.intercept_ , -model.coef_)
-    # x_thresh = (model.intercept_ / -model.coef_).item()
-    return x_thresh
+    return model, precision, x_thresh
+
+
+def get_level(thresholds, x_values, y_labels):
+    #get the avg of the classes
+    pass
+
+
 
 
 def get_thresholds(distributions, yardstick):
@@ -97,13 +110,43 @@ def get_thresholds(distributions, yardstick):
                 else:
                     y_labels += [0 for _ in range(len(values))] # 0 for simple
 
-            print(classe, heuristic)
-            thresh = train_regression(x_values, y_labels)
+            #print(classe, heuristic)
+            _, precision, x_thresh = train_regression(x_values, y_labels)
             #print(round(thresh, 3))
 
-            thresholds[classe][heuristic] = round(thresh, 3)
+            thresholds[classe][heuristic] = round(x_thresh, 3)
 
     return thresholds
+
+
+
+
+def select_features(distributions, yardstick, precision_threshold=0.7):
+    selected_features = []
+
+    for heuristic, values in distributions['N1'].items():
+        x_values = []
+        y_labels = []
+        for c in classes:
+            values = distributions[c][heuristic]
+            x_values += [[v] for v in values]
+            if classes.index(c) > classes.index('N1'):
+                y_labels += [1 for _ in range(len(values))]  # 1 for complex
+            else:
+                y_labels += [0 for _ in range(len(values))]  # 0 for simple
+
+        print('N1', heuristic)
+
+        precision, x_thresh = train_regression(x_values, y_labels)
+        # print(round(thresh, 3))
+
+        if precision >= precision_threshold:
+            selected_features.append(heuristic)
+        else:
+            print('not selected feature:', heuristic)
+    return selected_features
+
+
 
 
 
@@ -116,6 +159,8 @@ if __name__ == '__main__':
         print(f"--- Yardstick: {yardstick} | Seed: {random_state} ---")
         distributions = get_data(yardstick=yardstick)
         print('DONE loading data')
+        #selected_features = select_features(distributions, yardstick, precision_threshold=0.7)
+        #print('DONE selecting features', selected_features)
         thresholds = get_thresholds(distributions, yardstick)
-        print(thresholds)
+        #print(thresholds)
 

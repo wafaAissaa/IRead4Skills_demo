@@ -14,7 +14,7 @@ from sklearn.metrics import f1_score, accuracy_score, classification_report, con
 
 
 
-features = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'word_length', 'word_syllables'],
+FEATURES = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'word_length', 'word_syllables'],
            'lexicon': ['complexity', 'lexical_frequency', 'age_of_acquisition', 'lexical_diversity'],
            'syntax': ['parse_depth',
             'max_size_subordination',
@@ -157,7 +157,7 @@ def get_keys_paths(yardstick):
     keys_paths = {}
     with open('./outputs/0.json', 'r') as file:
         dico = json.load(file)
-    for feat in features[yardstick]:
+    for feat in FEATURES[yardstick]:
         keys_paths[feat] = find_full_key_path(dico, feat)
     return keys_paths
 
@@ -175,7 +175,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
 
         # Extract features
         x = []
-        for feat in features[yardstick]:
+        for feat in FEATURES[yardstick]:
             #print(feat)
             path_in_dico = keys_paths[feat]
             #print(path_in_dico)
