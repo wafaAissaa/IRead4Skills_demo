@@ -46,7 +46,7 @@ level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 RESULTS_DICO = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
 
 
-import pandas as pd
+
 
 def save_results_to_csv(results, filename, random_state, prior, aggregation_type ):
     """
@@ -187,8 +187,8 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
                 x.append(tmp)
             elif path_in_dico.count('0') == 1:
                 xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
-                xi = [x for x in xi if x not in ['-1', 'na']]
-                #print(xi)
+                xi = [x for x in xi if x not in [-1, 'na']]
+                # print(xi)
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print(feat, xi)
                 x.extend(xi)
@@ -196,7 +196,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
                 xi = [tmp['sentences'][str(s)]['words'][str(w)][feat]
                       for s in range(len(tmp['sentences']))
                       for w in range(len(tmp['sentences'][str(s)]['words']))]
-                xi = [x for x in xi if x not in ['-1', 'na']]
+                xi = [x for x in xi if x not in [-1, 'na']]
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print('here', xi)
                 x.extend(xi)

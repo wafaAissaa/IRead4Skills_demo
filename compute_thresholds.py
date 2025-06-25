@@ -47,6 +47,8 @@ sentence_level= {
     }
 
 document_document_level = {
+    "word_count": None,
+    "sentence_count": None,
     "lexical_diversity": None}
 
 token_level_high = {
@@ -118,14 +120,14 @@ def compute_thresholds(thresholds, df, outputs_path, densities = None):
                         print('error in index %s' %i)
                         continue
                     if distrib_levels[key] == 'document':
-                        values.append(data['features'][phenomenon])
+                        if data['features'][phenomenon] not in ['-1', 'na', -1]: values.append(data['features'][phenomenon])
                     elif distrib_levels[key] == 'sentence':
                         for k, v in data['sentences'].items():
-                            values.append(v['features'][phenomenon])
+                            if v['features'][phenomenon] not in ['-1', 'na', -1]: values.append(v['features'][phenomenon])
                     elif distrib_levels[key] == 'token':
                         for k, v in data['sentences'].items():
                             for k1, v1 in v['words'].items():
-                                if v1[phenomenon] != 'na': values.append(v1[phenomenon])
+                                if v1[phenomenon] not in ['-1', 'na', -1]: values.append(v1[phenomenon])
                 if densities:
                     densities[niveau][key][phenomenon] = values
 
