@@ -1,10 +1,11 @@
 import copy
-
+from tqdm import tqdm
 import pandas as pd
 import json
 import os
 from IPython.display import display, Markdown
 import numpy as np
+from itertools import product
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import make_classification
@@ -57,6 +58,7 @@ def aggregate(classes_vector, type="max", p = None, q = None):
                 raise ValueError("Geometric mean (p=0) requires all values to be positive.")
             classe = np.exp(np.mean(np.log(classes_vector)))
         else:
+            classes_vector = classes_vector.astype(float)
             classe = (np.mean(classes_vector ** p)) ** (1 / p)
 
     elif type == "percentile":
@@ -77,24 +79,21 @@ def aggregate(classes_vector, type="max", p = None, q = None):
 
 
 grid_search_params = [
-    {"type": "max", "p": None, "q": None},
+    {"type": "max", "p": None, "q": None},                      # Upper bound
 
-    {"type": "generalized_mean", "p": -1, "q": None},  # harmonic
-    {"type": "generalized_mean", "p": 0, "q": None},  # geometric
-    {"type": "generalized_mean", "p": 1, "q": None},  # arithmetic
-    {"type": "generalized_mean", "p": 2, "q": None},  # quadratic mean
-    {"type": "generalized_mean", "p": 4, "q": None},
-    {"type": "generalized_mean", "p": 8, "q": None},
+    {"type": "generalized_mean", "p": 0, "q": None},            # Geometric mean
+    {"type": "generalized_mean", "p": 1, "q": None},            # Arithmetic mean
+    #{"type": "generalized_mean", "p": 2, "q": None},            # Quadratic mean
+    {"type": "generalized_mean", "p": 4, "q": None},            # Heavy-tail bias
 
-    {"type": "percentile", "p": None, "q": 50},  # median
-    {"type": "percentile", "p": None, "q": 75},
-    {"type": "percentile", "p": None, "q": 90},
+    #{"type": "percentile", "p": None, "q": 50},                 # Median
+    {"type": "percentile", "p": None, "q": 75},                 # 75th percentile
+    #{"type": "percentile", "p": None, "q": 90},                 # 90th percentile
 
-    {"type": "harmonic_mean", "p": None, "q": None},  # full vector
-    {"type": "harmonic_mean_percentile", "p": None, "q": 75},
-    {"type": "harmonic_mean_percentile", "p": None, "q": 90}
+    #{"type": "harmonic_mean", "p": None, "q": None},            # Harmonic mean (all values)
+    {"type": "harmonic_mean_percentile", "p": None, "q": 75},   # Harmonic mean (tail)
+    #{"type": "harmonic_mean_percentile", "p": None, "q": 90}
 ]
-
 
 def evaluate(results, all_y_true, all_y_pred):
     mad = mean_absolute_difference(all_y_true, all_y_pred)
@@ -199,12 +198,18 @@ def get_features(output, features):
     return output_features
 
 
-def get_predictions(thresholds, aggregation_type, p, q):
+def get_predictions(thresholds):
     features = list(thresholds['N1'].keys())
     #print('features ------------------->', features)
     y_trues, y_preds = [], []
-    for index, row in df.iterrows():
+
+    feature_configs = [[(feat, cfg) for cfg in grid_search_params] for feat in features]
+    all_config_combinations = list(product(*feature_configs))
+
+    for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing documents"):
+        #print(index)
         predictions = defaultdict(dict)
+        feat_pred = defaultdict(dict)
         file_path = os.path.join(outputs_json_path, f"{index}.json")
         with open(file_path, 'r') as file:
             output = json.load(file)
@@ -214,6 +219,7 @@ def get_predictions(thresholds, aggregation_type, p, q):
 
         # print('output_features----------->', output_features)
         for feat in features:
+            feat_pred[feat] = {}
             predictions[feat] = []
             for v in output_features[feat]:
                 if v in ['-1', 'na', -1]: continue
@@ -228,22 +234,58 @@ def get_predictions(thresholds, aggregation_type, p, q):
 
                 # print(feat, thresholds['N1'][feat], thresholds['N2'][feat], thresholds['N3'][feat], v, predictions[feat][-1])
 
-            for config in grid_search_params:
-                aggregation_type = config["aggregation_type"]
-                p = config["p"]
-                q = config["q"]
+        yardstick_pred = {}
+        for combo in all_config_combinations:
+            config_key = []  # clé traçable : (('word_length', {...}), ('sentence_length', {...}), ...)
+            #print(config_key)
+            all_preds = []
 
-                feat_pred = aggregate(predictions[feat], type=aggregation_type, p=p, q=q)
-                # print(predictions[feat])
-
-
-        # aggregate all the features of the yardstick: use the max
-        yardstick_pred = classes[np.max([class_to_int[p] for p in list(predictions.values())]) - 1]
+            for feat, cfg in combo:
+                if len(predictions[feat]) == 1:
+                    pred = predictions[feat][0]
+                    config_key.append((feat, "no_agg"))
+                else:
+                    aggregation_type = cfg["type"]
+                    p = cfg["p"]
+                    q = cfg["q"]
+                    pred = aggregate(predictions[feat], type=aggregation_type, p=p, q=q)
+                    config_key.append((feat, tuple(sorted(cfg.items()))))
+                all_preds.append(pred)
+            # Agrégation finale : max des classes
+            final = classes[np.max([class_to_int[p] for p in all_preds]) - 1]
+            config_key = tuple(config_key)  # Convert to hashable form
+            yardstick_pred[config_key] = final
+            #print(config_key)
 
         y_trues.append(df.loc[index]['classe'])
         #print(predictions, prediction, df.loc[index]['classe'])
         y_preds.append(yardstick_pred)
-    return y_trues, y_preds
+
+    # Initialiser un dictionnaire pour stocker les prédictions par config
+    all_preds_per_config = defaultdict(list)
+
+    # Remplir all_preds_per_config
+    for i in range(len(y_trues)):
+        for config_key, pred in y_preds[i].items():
+            all_preds_per_config[config_key].append(pred)
+
+    # Calculer l’accuracy par configuration
+    accuracies = {}
+    for config_key, preds in all_preds_per_config.items():
+        acc = accuracy_score(y_trues, preds)
+        accuracies[config_key] = acc
+
+    # Trouver la meilleure config
+    best_config = max(accuracies, key=accuracies.get)
+    best_accuracy = accuracies[best_config]
+    best_predictions = all_preds_per_config[best_config]
+
+    print("✅ Best configuration found:")
+    for feat, config in best_config:
+        print(f"  {feat}: {config}")
+    print(f"🔍 Accuracy: {best_accuracy:.3f}")
+
+    return y_trues, best_predictions, best_config
 
 
 def get_thresholds(distributions, yardstick, random_state):
@@ -308,16 +350,14 @@ if __name__ == '__main__':
         #if yardstick != 'structure': continue
         print(f"--- Yardstick: {yardstick} | Seed: {random_state} ---")
         #distributions = get_data(yardstick=yardstick, features={'structure': ['word_length']})
-        distributions = get_data(yardstick=yardstick)#, features={'structure': ['word_length']})
+        distributions = get_data(yardstick=yardstick)#, features={'structure': ['word_length']})#, )
         print('DONE loading data')
         # selected_features = select_features(distributions, yardstick, precision_threshold=0.7)
         # print('DONE selecting features', selected_features)
         thresholds = get_thresholds(distributions, yardstick, random_state)
-
-
-        y_trues, y_preds = get_predictions(thresholds)
-        #print(thresholds)
+        y_trues, y_preds, best_config = get_predictions(thresholds)
         results = evaluate(results, y_trues, y_preds)
         print(results)
+        break
 
 
