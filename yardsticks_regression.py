@@ -13,7 +13,7 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import f1_score, accuracy_score, classification_report, confusion_matrix
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import GridSearchCV
-from scipy.stats import norm
+from scipy.stats import norm, hmean
 from sklearn.preprocessing import StandardScaler
 from collections import Counter,defaultdict
 import statistics
@@ -25,52 +25,75 @@ df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="tex
 df = df[~df.index.duplicated(keep='first')]
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
-level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
+class_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 classes = ['N1', 'N2', 'N3', 'N4']
 
 
-AGGREGATION_RULES = {
-    # --- Structure ---
-    'word_count': 'sum',  # total number of words in document
-    'sentence_count': 'sum',  # total number of sentences
-    'sentence_length': 'mean',  # average sentence length
-    'word_length': 'mean',  # average word length
-    'word_syllables': 'mean',  # average syllables per word
-
-    # --- Lexicon ---
-    'complexity': 'mean',  # average lexical complexity
-    'lexical_frequency': 'mean',  # average word frequency
-    'age_of_acquisition': 'mean',  # average AoA
-    'lexical_diversity': 'mean',  # mean diversity per sentence or document
-
-    # --- Syntax ---
-    'parse_depth': 'mean',  # average syntactic parse depth
-    'max_size_subordination': 'max',  # max depth of subordination
-    'ratio_subordination_per_token': 'mean',
-    'ratio_subordination_per_verb': 'mean',
-    'total_token_ratio_subordination': 'mean',
-    'max_size_np_pp_modifiers': 'max',
-    'max_size_passive': 'max',
-    'ratio_passive_per_token': 'mean',
-    'ratio_passive_per_verb': 'mean',
-    'total_token_ratio_passive': 'mean',
-    'max_size_coordination': 'max',
-    'ratio_coordination_per_token': 'mean',
-    'total_token_ratio_coordination': 'mean',
-    'max_size_aux_verbs': 'max',
-    'ratio_aux_verbs_per_token': 'mean',
-    'ratio_aux_verbs_per_verb': 'mean',
-    'total_token_ratio_aux_verbs': 'mean',
-
-    # --- Semantics ---
-    'concrete_ratio': 'mean'  # average concreteness per token or sentence
-}
+def generalized_mean(values, p):
+    values = np.array(values)
+    if p == 0:
+        # geometric mean
+        values = values[values > 0]  # avoid log(0)
+        return np.exp(np.mean(np.log(values)))
+    return (np.mean(values ** p)) ** (1 / p)
 
 
 def precision_class_1(y_true, y_pred):
     tp = sum((yt == 1 and yp == 1) for yt, yp in zip(y_true, y_pred))
     fp = sum((yt == 0 and yp == 1) for yt, yp in zip(y_true, y_pred))
     return tp / (tp + fp) if (tp + fp) > 0 else 0.0
+
+
+def aggregate(classes_vector, type="max", p = None, q = None):
+    classes_vector = [class_to_int[p] for p in classes_vector]
+    classes_vector = np.array(classes_vector)
+
+    if type == "max":
+        classe = np.max(classes_vector)
+
+    elif type == "generalized_mean":
+        if p == 0:
+            if np.any(classes_vector <= 0):
+                raise ValueError("Geometric mean (p=0) requires all values to be positive.")
+            classe = np.exp(np.mean(np.log(classes_vector)))
+        else:
+            classe = (np.mean(classes_vector ** p)) ** (1 / p)
+
+    elif type == "percentile":
+        classe = np.percentile(classes_vector, q=80)
+
+    elif type == "harmonic_mean":
+        if np.any(classes_vector <= 0):
+            raise ValueError("Harmonic mean requires all values to be positive.")
+        classe = hmean(classes_vector)
+
+    elif type == "harmonic_mean_percentile":
+        perc_values = classes_vector[classes_vector >= np.percentile(classes_vector, q=80)]
+        if np.any(perc_values <= 0):
+            raise ValueError("Harmonic mean requires all values to be positive.")
+        classe = hmean(perc_values)
+
+    return classes[int(round(classe))-1]
+
+
+grid_search_params = [
+    {"type": "max", "p": None, "q": None},
+
+    {"type": "generalized_mean", "p": -1, "q": None},  # harmonic
+    {"type": "generalized_mean", "p": 0, "q": None},  # geometric
+    {"type": "generalized_mean", "p": 1, "q": None},  # arithmetic
+    {"type": "generalized_mean", "p": 2, "q": None},  # quadratic mean
+    {"type": "generalized_mean", "p": 4, "q": None},
+    {"type": "generalized_mean", "p": 8, "q": None},
+
+    {"type": "percentile", "p": None, "q": 50},  # median
+    {"type": "percentile", "p": None, "q": 75},
+    {"type": "percentile", "p": None, "q": 90},
+
+    {"type": "harmonic_mean", "p": None, "q": None},  # full vector
+    {"type": "harmonic_mean_percentile", "p": None, "q": 75},
+    {"type": "harmonic_mean_percentile", "p": None, "q": 90}
+]
 
 
 def evaluate(results, all_y_true, all_y_pred):
@@ -115,7 +138,7 @@ def get_prob_threshold_f1(y_labels, y_pred_prob):
     return best_threshold
 
 
-def train_regression(x_values, y_labels):
+def train_regression(x_values, y_labels, random_state):
     x_values = np.array(x_values)
     y_labels = np.array(y_labels)
 
@@ -124,7 +147,7 @@ def train_regression(x_values, y_labels):
     x_values = scaler.fit_transform(x_values)
 
     # Logistic Regression with GridSearch
-    base_model = LogisticRegression(class_weight='balanced', max_iter=1000)
+    base_model = LogisticRegression(class_weight='balanced', max_iter=1000, random_state=random_state)
     param_grid = {
         'C': [0.01, 0.1, 1, 10, 100],
         'solver': ['liblinear', 'lbfgs'],
@@ -176,14 +199,12 @@ def get_features(output, features):
     return output_features
 
 
-def get_predictions(thresholds):
-    #get the avg of the classes
+def get_predictions(thresholds, aggregation_type, p, q):
     features = list(thresholds['N1'].keys())
     #print('features ------------------->', features)
     y_trues, y_preds = [], []
     for index, row in df.iterrows():
         predictions = defaultdict(dict)
-
         file_path = os.path.join(outputs_json_path, f"{index}.json")
         with open(file_path, 'r') as file:
             output = json.load(file)
@@ -205,23 +226,27 @@ def get_predictions(thresholds):
                 else:
                     predictions[feat].append('N1')
 
-                #print(feat, thresholds['N1'][feat], thresholds['N2'][feat], thresholds['N3'][feat], v, predictions[feat][-1])
+                # print(feat, thresholds['N1'][feat], thresholds['N2'][feat], thresholds['N3'][feat], v, predictions[feat][-1])
 
-            #print(predictions[feat])
-            #predictions[feat] = statistics.mode(predictions[feat])
-            predictions[feat] = classes[int(round(np.mean([level_to_int[p] for p in predictions[feat]])))-1]
-            #print(predictions[feat])
+            for config in grid_search_params:
+                aggregation_type = config["aggregation_type"]
+                p = config["p"]
+                q = config["q"]
 
-        # prediction = statistics.mode(list(predictions.values()))
+                feat_pred = aggregate(predictions[feat], type=aggregation_type, p=p, q=q)
+                # print(predictions[feat])
 
-        prediction = classes[int(round(np.mean([level_to_int[p] for p in list(predictions.values())]))) - 1]
+
+        # aggregate all the features of the yardstick: use the max
+        yardstick_pred = classes[np.max([class_to_int[p] for p in list(predictions.values())]) - 1]
+
         y_trues.append(df.loc[index]['classe'])
         #print(predictions, prediction, df.loc[index]['classe'])
-        y_preds.append(prediction)
+        y_preds.append(yardstick_pred)
     return y_trues, y_preds
 
 
-def get_thresholds(distributions, yardstick):
+def get_thresholds(distributions, yardstick, random_state):
     thresholds = defaultdict(dict)
 
     for classe, dico in distributions.items():
@@ -239,7 +264,7 @@ def get_thresholds(distributions, yardstick):
                     y_labels += [0 for _ in range(len(values))] # 0 for simple
 
             #print(classe, heuristic)
-            _, precision, x_thresh = train_regression(x_values, y_labels)
+            _, precision, x_thresh = train_regression(x_values, y_labels, random_state)
             #print(round(thresh, 3))
 
             thresholds[classe][heuristic] = round(x_thresh, 3)
@@ -247,7 +272,7 @@ def get_thresholds(distributions, yardstick):
     return thresholds
 
 
-def select_features(distributions, yardstick, precision_threshold=0.7):
+def select_features(distributions, yardstick, random_state, precision_threshold=0.7):
     selected_features = []
 
     for heuristic, values in distributions['N1'].items():
@@ -263,7 +288,7 @@ def select_features(distributions, yardstick, precision_threshold=0.7):
 
         #print('N1', heuristic)
 
-        precision, x_thresh = train_regression(x_values, y_labels)
+        precision, x_thresh = train_regression(x_values, y_labels, random_state)
         # print(round(thresh, 3))
 
         if precision >= precision_threshold:
@@ -285,12 +310,12 @@ if __name__ == '__main__':
         #distributions = get_data(yardstick=yardstick, features={'structure': ['word_length']})
         distributions = get_data(yardstick=yardstick)#, features={'structure': ['word_length']})
         print('DONE loading data')
-        #selected_features = select_features(distributions, yardstick, precision_threshold=0.7)
-        #print('DONE selecting features', selected_features)
-        thresholds = get_thresholds(distributions, yardstick)
+        # selected_features = select_features(distributions, yardstick, precision_threshold=0.7)
+        # print('DONE selecting features', selected_features)
+        thresholds = get_thresholds(distributions, yardstick, random_state)
+
 
         y_trues, y_preds = get_predictions(thresholds)
-        print('ACCURACY ', np.mean(np.array(y_trues) == np.array(y_preds)))
         #print(thresholds)
         results = evaluate(results, y_trues, y_preds)
         print(results)
