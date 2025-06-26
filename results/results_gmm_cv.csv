@@ -1,11 +1,11 @@
-RandomState	Prior	Aggregation	Structure mad	Structure acc	Structure macro-F1	Lexicon mad	Lexicon acc	Lexicon macro-F1	Syntax mad	Syntax acc	Syntax macro-F1	Semantics mad	Semantics acc	Semantics macro-F1
-2	uniform	mean	0.476	0.552	0.385	0.461	0.567	0.387	0.574	0.487	0.303	0.623	0.446	0.217
-2	uniform	mean+std	0.513	0.524	0.33	0.597	0.459	0.318	0.574	0.468	0.271	0.623	0.446	0.217
-2	uniform	mean+std+per+skew	0.645	0.439	0.358	0.662	0.45	0.308	0.535	0.513	0.308	0.623	0.446	0.217
-2	uniform	mean+std+max+per+skew	0.61	0.457	0.326	0.699	0.407	0.271	0.517	0.526	0.328	0.623	0.446	0.217
-2	uniform	full	0.558	0.506	0.352	0.716	0.396	0.258	0.532	0.509	0.315	0.623	0.446	0.217
-2	empirical	mean	0.472	0.55	0.392	0.461	0.567	0.387	0.535	0.506	0.284	0.623	0.446	0.217
-2	empirical	mean+std	0.519	0.517	0.338	0.597	0.457	0.317	0.558	0.5	0.286	0.623	0.446	0.217
-2	empirical	mean+std+per+skew	0.626	0.465	0.366	0.647	0.45	0.316	0.524	0.524	0.32	0.623	0.446	0.217
-2	empirical	mean+std+max+per+skew	0.574	0.498	0.373	0.628	0.444	0.267	0.528	0.524	0.32	0.623	0.446	0.217
-2	empirical	full	0.584	0.476	0.329	0.719	0.407	0.276	0.537	0.513	0.316	0.623	0.446	0.217
+config	Structure mad	Structure acc	Structure macro-F1	Lexicon mad	Lexicon acc	Lexicon macro-F1	Syntax mad	Syntax acc	Syntax macro-F1	Semantics mad	Semantics acc	Semantics macro-F1
+(random_state: 2, prior: uniform, aggregation_type: mean)	0.476	0.552	0.385	0.565	0.474	0.333	0.574	0.487	0.303	0.623	0.446	0.217
+(random_state: 2, prior: uniform, aggregation_type: mean+std)	0.513	0.524	0.33	0.584	0.481	0.317	0.574	0.468	0.271	0.623	0.446	0.217
+(random_state: 2, prior: uniform, aggregation_type: mean+std+per+skew)	0.645	0.439	0.358	0.667	0.407	0.306	0.535	0.513	0.308	0.623	0.446	0.217
+(random_state: 2, prior: uniform, aggregation_type: mean+std+max+per+skew)	0.61	0.457	0.326	0.665	0.403	0.283	0.517	0.526	0.328	0.623	0.446	0.217
+(random_state: 2, prior: uniform, aggregation_type: full)	0.558	0.506	0.352	0.699	0.396	0.28	0.532	0.509	0.315	0.623	0.446	0.217
+(random_state: 2, prior: empirical, aggregation_type: mean)	0.472	0.55	0.392	0.567	0.472	0.332	0.535	0.506	0.284	0.623	0.446	0.217
+(random_state: 2, prior: empirical, aggregation_type: mean+std)	0.519	0.517	0.338	0.593	0.47	0.318	0.558	0.5	0.286	0.623	0.446	0.217
+(random_state: 2, prior: empirical, aggregation_type: mean+std+per+skew)	0.626	0.465	0.366	0.626	0.442	0.354	0.524	0.524	0.32	0.623	0.446	0.217
+(random_state: 2, prior: empirical, aggregation_type: mean+std+max+per+skew)	0.574	0.498	0.373	0.606	0.465	0.299	0.528	0.524	0.32	0.623	0.446	0.217
+(random_state: 2, prior: empirical, aggregation_type: full)	0.584	0.476	0.329	0.641	0.437	0.301	0.537	0.513	0.316	0.623	0.446	0.217

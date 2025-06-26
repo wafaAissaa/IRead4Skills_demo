@@ -1,6 +1,4 @@
 RandomState	Prior	Aggregation	Structure mad	Structure acc	Structure macro-F1	Lexicon mad	Lexicon acc	Lexicon macro-F1	Syntax mad	Syntax acc	Syntax macro-F1	Semantics mad	Semantics acc	Semantics macro-F1
-2	uniform	full	0.561	0.502	0.339	0.662	0.429	0.27	0.543	0.496	0.286	0.623	0.446	0.217
-2	empirical	full	0.545	0.509	0.344	0.771	0.372	0.28	0.539	0.504	0.307	0.623	0.446	0.217
 2	uniform	mean	0.476	0.552	0.385	0.461	0.567	0.387	0.574	0.487	0.303	0.623	0.446	0.217
 2	uniform	mean+std	0.513	0.524	0.33	0.597	0.459	0.318	0.574	0.468	0.271	0.623	0.446	0.217
 2	uniform	mean+std+per+skew	0.645	0.439	0.358	0.662	0.45	0.308	0.535	0.513	0.308	0.623	0.446	0.217

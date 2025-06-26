@@ -43,12 +43,11 @@ df['classe'] = df['gold_score_20_label'].map(classes_to_level)
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 
 
-RESULTS_DICO = {'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
+RESULTS_DICO = {'config': (),'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
 
 
 
-
-def save_results_to_csv(results, filename, random_state, prior, aggregation_type ):
+def save_results_to_csv(results, filename):
     """
     Save one row of results to a CSV file, where each row represents a config.
 
@@ -67,11 +66,10 @@ def save_results_to_csv(results, filename, random_state, prior, aggregation_type
         round(results['semantics']['mad'], 3), round(results['semantics']['acc'], 3), round(results['semantics']['macro-F1'], 3),
     ]
 
-    config_info = [random_state, prior, aggregation_type ]
-    row = config_info + data
+    row = [results['config']] + data
 
     # Define column names
-    columns = ['RandomState', 'Prior', 'Aggregation' ] + [
+    columns = ['config'] + [
         'Structure mad', 'Structure acc', 'Structure macro-F1',
         'Lexicon mad', 'Lexicon acc', 'Lexicon macro-F1',
         'Syntax mad', 'Syntax acc', 'Syntax macro-F1',
@@ -221,7 +219,7 @@ def train_model(X, y, yardstick):
     X_scaled = scaler.fit_transform(X)
     
     # Dump the fitted scaler
-    with open('./yardsticks_models/scaler_%s.pkl' % yardstick, 'wb') as f:
+    with open('./yardsticks_models/gmm/scaler_%s.pkl' % yardstick, 'wb') as f:
         pickle.dump(scaler, f)
     
     # Train GMMs per class with BIC selection
@@ -245,10 +243,10 @@ def train_model(X, y, yardstick):
         best_params[cls] = best_setting
         print(f"Best GMM for class {cls}: {best_setting} with BIC={lowest_bic:.2f}")
     
-    with open('./yardsticks_models/best_gmm_models_%s.pkl' % yardstick, 'wb') as f:
+    with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'wb') as f:
         pickle.dump(best_gmm_models, f)
     
-    with open('./yardsticks_models/best_gmm_models_%s.pkl' % yardstick, 'rb') as f:
+    with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'rb') as f:
         best_gmm_models = pickle.load(f)
     
     # Predict class of each sample based on maximum log-likelihood
@@ -457,4 +455,5 @@ if __name__ == "__main__":
             #print(results)
         #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
         filename = "./results/results_gmm_cv.csv"
-        save_results_to_csv(results, filename=filename, random_state=random_state, prior=prior, aggregation_type=agg_type)
+        results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type})"
+        save_results_to_csv(results, filename=filename)
