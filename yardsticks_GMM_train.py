@@ -269,7 +269,7 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train'):
     
         for n in range(1, 6):  # Try 1 to 5 components
             for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, random_state=random_state)  # , init_params='k-means++')
+                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, init_params='k-means++', random_state=random_state)  # , )
                 gmm.fit(X_cls)
                 bic = gmm.bic(X_cls)
                 if bic < lowest_bic:
@@ -488,7 +488,7 @@ if __name__ == "__main__":
     random_state = 2
     np.random.seed(random_state)
 
-    results_of = "baseline"
+    results_of = "test"
 
     if results_of == "baseline":
         results = copy.deepcopy(RESULTS_DICO)
@@ -512,5 +512,7 @@ if __name__ == "__main__":
                 #print(results)
             #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
             filename = "./results/results_gmm_%s.csv" %results_of
-            results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type})"
+
+            extra="kmeans++"
+            results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type}, extra: {extra})"
             save_results_to_csv(results, filename=filename)
