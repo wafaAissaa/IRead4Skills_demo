@@ -41,9 +41,21 @@ df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="tex
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
-
+yardsticks = ['structure', 'lexicon','syntax', 'semantics']
 
 RESULTS_DICO = {'config': (),'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
+
+
+def load_annotations(yardstick, yardticks_filename="aggregated_yardstick_annotations.csv"):
+
+    yardstick_annotations = pd.read_csv(yardticks_filename, index_col=0)
+    yardstick_annotations[yardstick] = yardstick_annotations[yardstick].map(classes_to_level)
+    df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
+    # Get the index values to locate
+    target_indices = yardstick_annotations.index
+    # Find ilocs of these indices in df
+    iloc_positions = [df.index.get_loc(idx) for idx in target_indices]
+    return iloc_positions, yardstick_annotations[yardstick].tolist()
 
 
 
@@ -88,6 +100,27 @@ def save_results_to_csv(results, filename):
 
     df.to_csv(filename, index=False, sep='\t')
 
+
+def evaluate(all_y_true, all_y_pred, results, yardstick):
+    # Final evaluation
+    mad = mean_absolute_difference(all_y_true, all_y_pred)
+    print(f"Cross-validated TEST prediction mad: {mad:.3f}")
+    results[yardstick]['mad'] = mad
+    accuracy = accuracy_score(all_y_true, all_y_pred)
+    print(f"Cross-validated TEST prediction accuracy: {accuracy:.3f}")
+    results[yardstick]['acc'] = accuracy
+    f1_macro = f1_score(all_y_true, all_y_pred, average='macro', zero_division=0)
+    print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+    results[yardstick]['macro-F1'] = f1_macro
+
+    return results
+
+
+def results_baseline(results):
+    for yardstick in yardsticks:
+        positions, y = load_annotations(yardstick)
+        classes = df['classe'].iloc[positions].to_list()
+        evaluate(y, classes, results, yardstick)
 
 
 def mean_absolute_difference(prediction, ref):
@@ -160,7 +193,7 @@ def get_keys_paths(yardstick):
     return keys_paths
 
 
-def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
+def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
     X_list = []
     y_list = []
 
@@ -200,7 +233,10 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
                 x.extend(xi)
 
         X_list.append(x)
-        yi = row['classe']
+        if train:
+            yi = row['classe']
+        else:
+            yi = row[yardstick]
         y_list.append(yi)
 
     X = np.array(X_list) # X: feature matrix (shape [n_samples, n_features])
@@ -208,7 +244,9 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean"):
     return X, y
 
 
-def train_model(X, y, yardstick):
+
+
+def train_model(X, y, yardstick, prior, results, results_of = 'train'):
     best_gmm_models = {}
     best_params = {}
     
@@ -231,7 +269,7 @@ def train_model(X, y, yardstick):
     
         for n in range(1, 6):  # Try 1 to 5 components
             for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=10)  # , init_params='k-means++')
+                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, random_state=random_state)  # , init_params='k-means++')
                 gmm.fit(X_cls)
                 bic = gmm.bic(X_cls)
                 if bic < lowest_bic:
@@ -251,36 +289,40 @@ def train_model(X, y, yardstick):
     
     # Predict class of each sample based on maximum log-likelihood
     y_pred = []
-    
+
     # Compute class priors from training labels
-    class_counts = Counter(y)
-    total_samples = len(y)
-    class_priors = {cls: np.log(count / total_samples) for cls, count in class_counts.items()}
-    
-    for x in X_scaled:
-        log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls] for cls, gmm in
-                           best_gmm_models.items()}
-        predicted_class = max(log_likelihoods, key=log_likelihoods.get)
-        y_pred.append(predicted_class)
-    
-    # Compute accuracy
-    accuracy = accuracy_score(y, y_pred)
-    print(f"\nPrediction accuracy on training set: {accuracy:.3f}")
-    
-    f1_macro = f1_score(y, y_pred, average='macro')
-    print(f"\nPrediction f1_macro on training set: {f1_macro:.3f}")
+    if prior == 'empirical':
+        class_counts = Counter(y)
+        total_samples = len(y)
+        class_priors = {cls: np.log(count / total_samples) for cls, count in class_counts.items()}
+    else:
+        class_priors = {cls: 0.0 for cls in classes}
 
-    report = classification_report(y, y_pred)
-    print("\nClassification Report:\n", report)
+    if results_of == "train":
+        for x in X_scaled:
+            log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls] for cls, gmm in
+                               best_gmm_models.items()}
+            predicted_class = max(log_likelihoods, key=log_likelihoods.get)
+            y_pred.append(predicted_class)
 
-    cm = confusion_matrix(y, y_pred, labels=classes)
-    cm_df = pd.DataFrame(cm, index=[f"True: {c}" for c in classes],
-                         columns=[f"Pred: {c}" for c in classes])
-    print("Confusion Matrix:\n", cm_df)
+        evaluate(y, y_pred, results, yardstick)
+
+    elif results_of == "test":
+        positions, y = load_annotations(yardstick)
+        for x in X_scaled[positions]:
+            log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] + class_priors[cls] for cls, gmm in
+                               best_gmm_models.items()}
+            predicted_class = max(log_likelihoods, key=log_likelihoods.get)
+            y_pred.append(predicted_class)
+        evaluate(y, y_pred, results, yardstick)
+    elif results_of == "baseline":
+        print('please provide split name!')
 
 
+    return results
 
-def train_model_crossval(X, y, yardstick, results, random_state=2, n_splits=5):
+
+def train_model_crossval(X, y, yardstick, prior, results, random_state=2, n_splits=5):
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=random_state)
     all_y_true, all_y_pred = [], []
     all_y_train_true, all_y_train_pred = [], []
@@ -304,10 +346,13 @@ def train_model_crossval(X, y, yardstick, results, random_state=2, n_splits=5):
         classes = np.unique(y_train)
 
         # Compute class priors from training data
-        class_counts = Counter(y)
-        total_samples = len(y)
-        class_priors = {cls: np.log(class_counts[cls] / total_samples) for cls in classes}
-        #print("class_priors:\n", class_priors)
+        if prior == 'empirical':
+            class_counts = Counter(y)
+            total_samples = len(y)
+            class_priors = {cls: np.log(class_counts[cls] / total_samples) for cls in classes}
+            #print("class_priors:\n", class_priors)
+        else:
+            class_priors = {cls: 0.0 for cls in classes}
 
         for cls in classes:
             X_cls_train = X_train_scaled[y_train == cls]
@@ -318,7 +363,7 @@ def train_model_crossval(X, y, yardstick, results, random_state=2, n_splits=5):
 
             for n in range(1, 6):
                 for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                    gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=10)
+                    gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, random_state=random_state)
                     gmm.fit(X_cls_train)
                     bic = gmm.bic(X_cls_val)
                     if bic < lowest_bic:
@@ -442,18 +487,30 @@ def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
 if __name__ == "__main__":
     random_state = 2
     np.random.seed(random_state)
-    outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
-    yardsticks = ['structure', 'lexicon','syntax', 'semantics']
-    aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
-    priors = ["uniform", "empirical"]
-    for prior, agg_type in itertools.product(priors, aggregation_types):
+
+    results_of = "baseline"
+
+    if results_of == "baseline":
         results = copy.deepcopy(RESULTS_DICO)
-        for yardstick in yardsticks:
-            X, y = get_data(outputs_json_path, yardstick, agg_type)
-            print(f"--- CrossVal | Yardstick: {yardstick} | Prior: {prior} | Aggregation: {agg_type} | Seed: {random_state} ---")
-            results = train_model_crossval(X, y, yardstick, results, random_state=random_state ,n_splits=5)
-            #print(results)
-        #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
-        filename = "./results/results_gmm_cv.csv"
-        results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type})"
+        results_baseline(results)
+        filename = "./results/results_gmm_%s.csv" % results_of
+        results['config'] = f"(baseline)"
         save_results_to_csv(results, filename=filename)
+    else:
+
+        outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
+
+        aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
+        priors = ["uniform", "empirical"]
+        for prior, agg_type in itertools.product(priors, aggregation_types):
+            results = copy.deepcopy(RESULTS_DICO)
+            for yardstick in yardsticks:
+                X, y = get_data(outputs_json_path, yardstick, agg_type)
+                print(f"--- CrossVal | Yardstick: {yardstick} | Prior: {prior} | Aggregation: {agg_type} | Seed: {random_state} ---")
+                #results = train_model_crossval(X, y, yardstick, prior, results, random_state=random_state ,n_splits=5)
+                results = train_model(X, y, yardstick, prior, results, results_of=results_of)
+                #print(results)
+            #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
+            filename = "./results/results_gmm_%s.csv" %results_of
+            results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type})"
+            save_results_to_csv(results, filename=filename)
