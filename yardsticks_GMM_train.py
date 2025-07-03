@@ -10,7 +10,7 @@ from scipy.stats import skew, kurtosis
 from sklearn.preprocessing import StandardScaler
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import StratifiedKFold, train_test_split
-from sklearn.metrics import f1_score, accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import f1_score, accuracy_score, classification_report, confusion_matrix, cohen_kappa_score
 
 
 
@@ -43,7 +43,7 @@ df['classe'] = df['gold_score_20_label'].map(classes_to_level)
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 yardsticks = ['structure', 'lexicon','syntax', 'semantics']
 
-RESULTS_DICO = {'config': (),'structure': {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'acc': 0, 'macro-F1': 0}}
+RESULTS_DICO = {'config': (),'structure': {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}}
 
 
 def load_annotations(yardstick, yardticks_filename="aggregated_yardstick_annotations.csv"):
@@ -72,20 +72,20 @@ def save_results_to_csv(results, filename):
     """
     # Flatten the result data
     data = [
-        round(results['structure']['mad'], 3), round(results['structure']['acc'], 3), round(results['structure']['macro-F1'], 3),
-        round(results['lexicon']['mad'], 3), round(results['lexicon']['acc'], 3), round(results['lexicon']['macro-F1'], 3),
-        round(results['syntax']['mad'], 3), round(results['syntax']['acc'], 3), round(results['syntax']['macro-F1'], 3),
-        round(results['semantics']['mad'], 3), round(results['semantics']['acc'], 3), round(results['semantics']['macro-F1'], 3),
+        round(results['structure']['mad'], 3), round(results['structure']['qwk'], 3), round(results['structure']['acc'], 3), round(results['structure']['macro-F1'], 3),
+        round(results['lexicon']['mad'], 3), round(results['lexicon']['qwk'], 3), round(results['lexicon']['acc'], 3), round(results['lexicon']['macro-F1'], 3),
+        round(results['syntax']['mad'], 3), round(results['syntax']['qwk'], 3), round(results['syntax']['acc'], 3), round(results['syntax']['macro-F1'], 3),
+        round(results['semantics']['mad'], 3), round(results['semantics']['qwk'], 3), round(results['semantics']['acc'], 3), round(results['semantics']['macro-F1'], 3),
     ]
 
     row = [results['config']] + data
 
     # Define column names
     columns = ['config'] + [
-        'Structure mad', 'Structure acc', 'Structure macro-F1',
-        'Lexicon mad', 'Lexicon acc', 'Lexicon macro-F1',
-        'Syntax mad', 'Syntax acc', 'Syntax macro-F1',
-        'Semantics mad', 'Semantics acc', 'Semantics macro-F1',
+        'Structure mad', 'Structure qwk', 'Structure acc', 'Structure macro-F1',
+        'Lexicon mad', 'Lexicon qwk', 'Lexicon acc', 'Lexicon macro-F1',
+        'Syntax mad', 'Syntax qwk', 'Syntax acc', 'Syntax macro-F1',
+        'Semantics mad', 'Semantics qwk', 'Semantics acc', 'Semantics macro-F1',
     ]
 
     # Create DataFrame for a single row
@@ -104,13 +104,16 @@ def save_results_to_csv(results, filename):
 def evaluate(all_y_true, all_y_pred, results, yardstick):
     # Final evaluation
     mad = mean_absolute_difference(all_y_true, all_y_pred)
-    print(f"Cross-validated TEST prediction mad: {mad:.3f}")
+    print(f"mad: {mad:.3f}")
     results[yardstick]['mad'] = mad
+    qwk = cohen_kappa_score([level_to_int[y] for y in all_y_true], [level_to_int[y] for y in all_y_pred], weights="quadratic")
+    print(f"qwk: {qwk:.3f}")
+    results[yardstick]['qwk'] = qwk
     accuracy = accuracy_score(all_y_true, all_y_pred)
-    print(f"Cross-validated TEST prediction accuracy: {accuracy:.3f}")
+    print(f"accuracy: {accuracy:.3f}")
     results[yardstick]['acc'] = accuracy
     f1_macro = f1_score(all_y_true, all_y_pred, average='macro', zero_division=0)
-    print(f"Cross-validated TEST macro F1 score: {f1_macro:.3f}")
+    print(f"F1 score: {f1_macro:.3f}")
     results[yardstick]['macro-F1'] = f1_macro
 
     return results
@@ -269,7 +272,7 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train'):
     
         for n in range(1, 6):  # Try 1 to 5 components
             for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, init_params='k-means++', random_state=random_state)  # , )
+                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, init_params='k-means++', random_state=random_state)  #
                 gmm.fit(X_cls)
                 bic = gmm.bic(X_cls)
                 if bic < lowest_bic:
@@ -363,7 +366,7 @@ def train_model_crossval(X, y, yardstick, prior, results, random_state=2, n_spli
 
             for n in range(1, 6):
                 for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                    gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, random_state=random_state)
+                    gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=5, random_state=random_state)
                     gmm.fit(X_cls_train)
                     bic = gmm.bic(X_cls_val)
                     if bic < lowest_bic:
@@ -493,7 +496,7 @@ if __name__ == "__main__":
     if results_of == "baseline":
         results = copy.deepcopy(RESULTS_DICO)
         results_baseline(results)
-        filename = "./results/results_gmm_%s.csv" % results_of
+        filename = "./results/results_gmm_%s_qwk.csv" % results_of
         results['config'] = f"(baseline)"
         save_results_to_csv(results, filename=filename)
     else:
@@ -511,7 +514,7 @@ if __name__ == "__main__":
                 results = train_model(X, y, yardstick, prior, results, results_of=results_of)
                 #print(results)
             #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
-            filename = "./results/results_gmm_%s.csv" %results_of
+            filename = "./results/results_gmm_%s_qwk.csv" %results_of
 
             extra="kmeans++"
             results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type}, extra: {extra})"

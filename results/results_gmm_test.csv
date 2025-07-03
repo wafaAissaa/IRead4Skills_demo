@@ -39,3 +39,5 @@ config	Structure mad	Structure acc	Structure macro-F1	Lexicon mad	Lexicon acc	Le
 (random_state: 2, prior: empirical, aggregation_type: mean+std+per+skew, extra: kmeans++)	0.633	0.5	0.431	0.683	0.45	0.423	0.6	0.45	0.463	0.6	0.417	0.292
 (random_state: 2, prior: empirical, aggregation_type: mean+std+max+per+skew, extra: kmeans++)	0.633	0.483	0.423	0.6	0.5	0.45	0.567	0.467	0.469	0.6	0.417	0.292
 (random_state: 2, prior: empirical, aggregation_type: full, extra: kmeans++)	0.55	0.567	0.488	0.65	0.483	0.448	0.6	0.45	0.455	0.6	0.417	0.292
+(random_state: 2, prior: uniform, aggregation_type: mean, extra: kmeans++)	0.65	0.45	0.399	0.7	0.483	0.446	0.7	0.433	0.426	1.033	0.283	0.254
+(random_state: 2, prior: uniform, aggregation_type: mean+std, extra: kmeans++)	0.65	0.433	0.382	0.717	0.45	0.397	0.733	0.4	0.41	1.033	0.283	0.254
