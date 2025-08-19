@@ -1,0 +1,2 @@
+config	Structure mad	Structure qwk	Structure acc	Structure macro-F1	Lexicon mad	Lexicon qwk	Lexicon acc	Lexicon macro-F1	Syntax mad	Syntax qwk	Syntax acc	Syntax macro-F1	Semantics mad	Semantics qwk	Semantics acc	Semantics macro-F1
+baseline_prediction_hybride	0.6	0.53	0.467	0.363	0.65	0.568	0.4	0.363	0.467	0.655	0.567	0.523	0.583	0.581	0.45	0.392
