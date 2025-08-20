@@ -1,0 +1,3 @@
+config	Structure mad	Structure qwk	Structure acc	Structure macro-F1	Lexicon mad	Lexicon qwk	Lexicon acc	Lexicon macro-F1	Syntax mad	Syntax qwk	Syntax acc	Syntax macro-F1	Semantics mad	Semantics qwk	Semantics acc	Semantics macro-F1
+(random_state: 42, prior: empirical, aggregation_type: full, extra:  )	0.533	0.646	0.55	0.476	0.517	0.661	0.567	0.458	0.583	0.686	0.45	0.446	0.617	0.396	0.4	0.261
+(random_state: 42, prior: empirical, aggregation_type: full, extra: )	0.533	0.646	0.55	0.476	0.517	0.661	0.567	0.458	0.583	0.686	0.45	0.446	0.617	0.396	0.4	0.261

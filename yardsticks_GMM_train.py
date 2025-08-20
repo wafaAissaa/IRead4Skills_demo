@@ -272,7 +272,7 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train'):
     
         for n in range(1, 6):  # Try 1 to 5 components
             for cov_type in ['full', 'tied', 'diag', 'spherical']:
-                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, init_params='k-means++', random_state=random_state)  #
+                gmm = GaussianMixture(n_components=n, covariance_type=cov_type, n_init=1, random_state=random_state)  # init_params='k-means++',
                 gmm.fit(X_cls)
                 bic = gmm.bic(X_cls)
                 if bic < lowest_bic:
@@ -488,10 +488,11 @@ def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
 
 
 if __name__ == "__main__":
-    random_state = 2
+    random_state = 42
     np.random.seed(random_state)
 
     results_of = "test"
+    get_best_model = True
 
     if results_of == "baseline":
         results = copy.deepcopy(RESULTS_DICO)
@@ -506,6 +507,8 @@ if __name__ == "__main__":
         aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
         priors = ["uniform", "empirical"]
         for prior, agg_type in itertools.product(priors, aggregation_types):
+            if get_best_model and (prior != "empirical" or agg_type != "full"):
+                continue
             results = copy.deepcopy(RESULTS_DICO)
             for yardstick in yardsticks:
                 X, y = get_data(outputs_json_path, yardstick, agg_type)
@@ -514,8 +517,8 @@ if __name__ == "__main__":
                 results = train_model(X, y, yardstick, prior, results, results_of=results_of)
                 #print(results)
             #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
-            filename = "./results/results_gmm_%s_qwk.csv" %results_of
+            filename = "./results/results_gmm_%s_best.csv" %results_of
 
-            extra="kmeans++"
+            extra= " " # "kmeans++"
             results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type}, extra: {extra})"
             save_results_to_csv(results, filename=filename)
