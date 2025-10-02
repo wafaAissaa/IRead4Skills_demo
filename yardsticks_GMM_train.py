@@ -210,7 +210,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
         # Extract features
         x = []
         for feat in FEATURES[yardstick]:
-            #print(feat)
+            print(feat)
             path_in_dico = keys_paths[feat]
             #print(path_in_dico)
             # print(find_full_key_path(thresholds, feat))
@@ -219,6 +219,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
                 for key in path_in_dico:
                     tmp = tmp[key]
                 x.append(tmp)
+                print('len feat ', 1)
             elif path_in_dico.count('0') == 1:
                 xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
                 xi = [x for x in xi if x not in [-1, 'na']]
@@ -226,6 +227,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print(feat, xi)
                 x.extend(xi)
+                print('len feat ', len(xi))
             elif path_in_dico.count('0') == 2:
                 xi = [tmp['sentences'][str(s)]['words'][str(w)][feat]
                       for s in range(len(tmp['sentences']))
@@ -234,6 +236,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print('here', xi)
                 x.extend(xi)
+                print('len feat ', len(xi))
 
         X_list.append(x)
         if train:
@@ -249,7 +252,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
 
 
 
-def train_model(X, y, yardstick, prior, results, results_of = 'train'):
+def train_model(X, y, yardstick, prior, results, results_of = 'train', dump=False):
     best_gmm_models = {}
     best_params = {}
     
@@ -258,10 +261,13 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train'):
     # Standardize features
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    
-    # Dump the fitted scaler
-    with open('./yardsticks_models/gmm/scaler_%s.pkl' % yardstick, 'wb') as f:
-        pickle.dump(scaler, f)
+    print(X)
+    print(X_scaled)
+
+    if dump:
+        # Dump the fitted scaler
+        with open('./yardsticks_models/gmm/scaler_%s.pkl' % yardstick, 'wb') as f:
+            pickle.dump(scaler, f)
     
     # Train GMMs per class with BIC selection
     for cls in classes:
@@ -283,12 +289,13 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train'):
         best_gmm_models[cls] = best_gmm
         best_params[cls] = best_setting
         print(f"Best GMM for class {cls}: {best_setting} with BIC={lowest_bic:.2f}")
-    
-    with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'wb') as f:
-        pickle.dump(best_gmm_models, f)
-    
-    with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'rb') as f:
-        best_gmm_models = pickle.load(f)
+
+    if dump:
+        with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'wb') as f:
+            pickle.dump(best_gmm_models, f)
+
+        with open('./yardsticks_models/gmm/best_gmm_models_%s.pkl' % yardstick, 'rb') as f:
+            best_gmm_models = pickle.load(f)
     
     # Predict class of each sample based on maximum log-likelihood
     y_pred = []
@@ -509,14 +516,18 @@ if __name__ == "__main__":
         for prior, agg_type in itertools.product(priors, aggregation_types):
             if get_best_model and (prior != "empirical" or agg_type != "full"):
                 continue
+            print(prior, agg_type)
             results = copy.deepcopy(RESULTS_DICO)
             for yardstick in yardsticks:
                 X, y = get_data(outputs_json_path, yardstick, agg_type)
+                print(yardstick, X.shape, y.shape)
                 print(f"--- CrossVal | Yardstick: {yardstick} | Prior: {prior} | Aggregation: {agg_type} | Seed: {random_state} ---")
                 #results = train_model_crossval(X, y, yardstick, prior, results, random_state=random_state ,n_splits=5)
-                results = train_model(X, y, yardstick, prior, results, results_of=results_of)
+                results = train_model(X, y, yardstick, prior, results, results_of=results_of, dump=False)
                 #print(results)
+                break
             #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
+
             filename = "./results/results_gmm_%s_best.csv" %results_of
 
             extra= " " # "kmeans++"
