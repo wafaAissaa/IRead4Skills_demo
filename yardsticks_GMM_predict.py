@@ -57,6 +57,9 @@ def aggregate(feature_vector, type="mean"):
             skew(feature_vector) if not np.isnan(skew(feature_vector)) else 0.0,
         ]
     elif type == "full":
+        if len(feature_vector) == 0:
+            # return 8 NaNs, since that's the expected size
+            return [np.nan] * 8
         return [
             np.mean(feature_vector),
             np.std(feature_vector),
@@ -104,10 +107,11 @@ def get_features(phenomena_output, yardtick='lexicon', aggregation_type="full"):
     for feat in features[yardtick]:
         path_in_dico = find_full_key_path(phenomena_output, feat)
         tmp = phenomena_output
+        print(path_in_dico)
         if '0' not in path_in_dico:
             for key in path_in_dico:
                 tmp = tmp[key]
-            x.append(tmp)
+            x.append(tmp if tmp not in [-1, 'na', 'NA'] else np.nan)
         elif path_in_dico.count('0') == 1:
             xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
             # print(feat, xi)
@@ -119,7 +123,9 @@ def get_features(phenomena_output, yardtick='lexicon', aggregation_type="full"):
                   for s in range(len(tmp['sentences']))
                   for w in range(len(tmp['sentences'][str(s)]['words']))]
             xi = [x for x in xi if x not in [-1, 'na', 'NA']]
+            print(xi)
             xi = aggregate(xi, type=aggregation_type)
+            print(xi)
             x.extend(xi)
 
     X_list.append(x)
@@ -137,6 +143,7 @@ def predict(phenomena_output):
         print(yardstick)
 
         scaler = scalers[yardstick]
+        #print(scaler.mean_)
         best_gmm_model = best_gmm_models[yardstick]
 
         #for cls, gmm in best_gmm_model.items():
@@ -145,9 +152,10 @@ def predict(phenomena_output):
         X = get_features(phenomena_output, yardstick, aggregation_type='full')
 
         X_scaled = scaler.transform(X)
+        X_scaled = np.nan_to_num(X_scaled, nan=0.0)
 
         for x in X_scaled:
-            #print(x)
+            # print(x)
             log_likelihoods = {cls: gmm.score_samples(x.reshape(1, -1))[0] for cls, gmm in best_gmm_model.items()}
             predicted_class = max(log_likelihoods, key=log_likelihoods.get)
 
@@ -158,11 +166,12 @@ def predict(phenomena_output):
 if __name__ == '__main__':
 
 
-    message = "La commune est la ville ou le village où vous habitez."  # ou:ville,village
+    message = "€"  # ou:ville,village
 
     difficulty_level = "A1"
-    message_json = json.dumps(message, ensure_ascii=False)
-    r = requests.post(url="http://192.168.249.77:8080/process_phenomena", data={"raw_text": message_json,  # server
+    #message_json = json.dumps(message, ensure_ascii=False)
+    #print(message)
+    r = requests.post(url="http://192.168.249.77:8080/process_phenomena", data={"raw_text": message,  # server
                                                                                 "difficulty_level": difficulty_level})
     # r = requests.post(url="http://0.0.0.0:8080/process_phenomena",data={"raw_text": message_json,      # local
     #                         "difficulty_level": difficulty_level})
@@ -174,6 +183,8 @@ if __name__ == '__main__':
     # phenomena_output = json.dumps(output_dict, ensure_ascii=False)
     phenomena_output = output_dict
 
-    #print(phenomena_output)
-
-    print(predict(phenomena_output))
+    if list(phenomena_output.keys()) == ["error"]:
+        result = {k: "N1" for k in ["structure", "lexicon", "syntax", "semantics"]}
+        print(result)
+    else:
+        print(predict(phenomena_output))
