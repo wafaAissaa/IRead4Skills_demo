@@ -99,7 +99,7 @@ def load_models(path='./yardsticks_models'):
 
 
 keys_paths = {}
-
+best_gmm_models, scalers = (None, None)
 
 def get_features(phenomena_output, yardtick='lexicon', aggregation_type="full"):
     X_list = []
