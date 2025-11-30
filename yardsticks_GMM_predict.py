@@ -137,7 +137,7 @@ def get_features(phenomena_output, yardtick='lexicon', aggregation_type="full"):
 def predict(phenomena_output):
     output = {}
 
-    best_gmm_models, scalers = load_models(path='./yardsticks_models/gmm_latest')
+    best_gmm_models, scalers = load_models(path='yardsticks_models/gmm_unaligned_in_paper')
 
     for yardstick in features.keys():
         print(yardstick)
@@ -166,7 +166,7 @@ def predict(phenomena_output):
 if __name__ == '__main__':
 
 
-    message = "€"  # ou:ville,village
+    message = "DISCOURS DU PRÉSIDENT DE LA RÉPUBLIQUE AUX ARMÉES. […] Cette année, comme l'an prochain, comme depuis 1790, le défilé du 14 juillet nous rappellera que certaines choses méritent qu'on s'engage et qu'on se batte pour elles, que la paix n'est pas un confort qu'on achète par des concessions. C'est un idéal de justice qu'il faut être capable de défendre. La France du 14 juillet est une France souveraine, rayonnant en Europe et dans le monde, capable de maîtriser son destin pour que chaque Français ait la possibilité de décider du sien à son tour. C'est la France fidèle à l'esprit des compagnons et à leurs cendres. Et c'est une France que vous faites vivre. Et en concluant mon propos, je veux ici vous redire ma confiance et ma fierté. Il y a la stratégie, il y a le cap, il y a les moyens qu'on donne, il y a les choix qu'on fait, il y a les partenariats qu'on noue, il y a les innovations que l'on conduit. Mais chaque petit matin et chaque soir, il n'y a que les femmes et les hommes qui se lancent et qui, jusqu'au sacrifice ultime, retrouvent le sens de ce lien sacré entre l'armée et la Nation. Et c'est vous qui le portez. Ce lien, cet engagement est un trésor. Et ce trésor, j'invite chacun de nos compatriotes à en penser l'intensité, la transcendance, la singularité. C'est celle qui doit nous inspirer chaque jour. C'est celle qui force le respect, l'admiration mais c'est celle aussi qui doit nous conduire dans chacune de nos décisions. Car la République comme la Nation sont un bloc. Vous avez ma confiance et ma fierté. Vive la République, vive la France !"  # ou:ville,village
 
     difficulty_level = "A1"
     #message_json = json.dumps(message, ensure_ascii=False)

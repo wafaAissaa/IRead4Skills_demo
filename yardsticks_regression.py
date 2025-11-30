@@ -354,7 +354,7 @@ def select_features(distributions, yardstick, random_state, precision_threshold=
 if __name__ == '__main__':
     random_state = 42
     np.random.seed(random_state)
-    outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
+    outputs_json_path = 'outputs_depricated'  # path to the folder containing the jsons outputs of the annotator
     yardsticks = ['structure', 'lexicon', 'syntax', 'semantics']
     results = copy.deepcopy(RESULTS_DICO)
     for yardstick in yardsticks:

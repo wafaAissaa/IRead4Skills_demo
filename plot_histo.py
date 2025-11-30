@@ -3,7 +3,7 @@ import json
 import matplotlib.pyplot as plt
 
 # Load JSON data
-with open("./outputs/distributions.json", "r") as f:
+with open("outputs_depricated/distributions.json", "r") as f:
     data = json.load(f)
 
 # Create output directory

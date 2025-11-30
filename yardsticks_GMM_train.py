@@ -37,13 +37,33 @@ FEATURES = {'structure': ['word_count', 'sentence_count', 'sentence_length', 'wo
            'semantics': ['concrete_ratio']}
 
 
-df = pd.read_csv('./Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
+df = pd.read_csv('./data/Qualtrics_Annotations_B.csv', delimiter="\t", index_col="text_indice")
 classes_to_level = {'Très Facile':'N1', 'Facile': 'N2', 'Accessible':'N3','+Complexe':'N4'}
 df['classe'] = df['gold_score_20_label'].map(classes_to_level)
+
+# add the global predictions column to the dataframe
+complexity_results = pd.read_csv('./data/complexity_results.csv', delimiter="\t", index_col="text_indice")
+df = df.merge(
+    complexity_results[["predicted_level"]], left_index=True, right_on="text_indice", how="left")
+
+df['predicted_classe'] = df['predicted_level'].map(classes_to_level)
+
+df.to_csv("just_cheking.csv", index=True, sep='\t')
+
 level_to_int = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4}
 yardsticks = ['structure', 'lexicon','syntax', 'semantics']
 
 RESULTS_DICO = {'config': (),'structure': {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}, 'lexicon' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0},'syntax' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}, 'semantics' : {'mad': 0, 'qwk': 0, 'acc': 0, 'macro-F1': 0}}
+
+#order of data is not changed during predicitions:
+predictions_df = pd.DataFrame({
+    "classe": df["classe"].values,
+    "predicted_classe": df["predicted_classe"].values,
+    "structure": None,
+    "lexicon": None,
+    "syntax": None,
+    "semantics": None
+})
 
 
 def load_annotations(yardstick, yardticks_filename="aggregated_yardstick_annotations.csv"):
@@ -134,7 +154,7 @@ def mean_absolute_difference(prediction, ref):
     return np.mean(np.abs(pred_levels - ref_levels))
 
 
-def aggregate(feature_vector, type="mean"):
+def aggregate(feature_vector, type="full"):
 
     if type == "mean":
         return [np.mean(feature_vector)]
@@ -189,14 +209,14 @@ def find_full_key_path(d, target_key, path=None):
 
 def get_keys_paths(yardstick):
     keys_paths = {}
-    with open('./outputs/0.json', 'r') as file:
+    with open('outputs_depricated/0.json', 'r') as file:
         dico = json.load(file)
     for feat in FEATURES[yardstick]:
         keys_paths[feat] = find_full_key_path(dico, feat)
     return keys_paths
 
 
-def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
+def get_data(outputs_json_path, yardstick, aggregation_type="full", predictions_as_gt=False):
     X_list = []
     y_list = []
 
@@ -210,39 +230,39 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
         # Extract features
         x = []
         for feat in FEATURES[yardstick]:
-            print(feat)
+            # print(feat)
             path_in_dico = keys_paths[feat]
-            #print(path_in_dico)
+            # print(path_in_dico)
             # print(find_full_key_path(thresholds, feat))
             tmp = data
             if '0' not in path_in_dico:
                 for key in path_in_dico:
                     tmp = tmp[key]
-                x.append(tmp)
-                print('len feat ', 1)
+                if tmp not in [-1, 'na', 'NA']: x.append(tmp)
+                # print('len feat ', 1)
             elif path_in_dico.count('0') == 1:
                 xi = [tmp['sentences'][str(s)]['features'][feat] for s in range(len(tmp['sentences']))]
-                xi = [x for x in xi if x not in [-1, 'na']]
+                xi = [x for x in xi if x not in [-1, 'na', 'NA']]
                 # print(xi)
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print(feat, xi)
                 x.extend(xi)
-                print('len feat ', len(xi))
+                #print('len feat ', len(xi))
             elif path_in_dico.count('0') == 2:
                 xi = [tmp['sentences'][str(s)]['words'][str(w)][feat]
                       for s in range(len(tmp['sentences']))
                       for w in range(len(tmp['sentences'][str(s)]['words']))]
-                xi = [x for x in xi if x not in [-1, 'na']]
+                xi = [x for x in xi if x not in [-1, 'na', 'NA']]
                 xi = aggregate(xi, type=aggregation_type)
                 if np.isnan(xi).sum(): print('here', xi)
                 x.extend(xi)
-                print('len feat ', len(xi))
+                #print('len feat ', len(xi))
 
         X_list.append(x)
-        if train:
+        if not predictions_as_gt:
             yi = row['classe']
         else:
-            yi = row[yardstick]
+            yi = row["predicted_classe"]
         y_list.append(yi)
 
     X = np.array(X_list) # X: feature matrix (shape [n_samples, n_features])
@@ -250,9 +270,7 @@ def get_data(outputs_json_path, yardstick, aggregation_type="mean", train=True):
     return X, y
 
 
-
-
-def train_model(X, y, yardstick, prior, results, results_of = 'train', dump=False):
+def train_model(X, y, yardstick, prior, results, predictions_df, results_of = 'train', predictions_as_gt = False, dump=False):
     best_gmm_models = {}
     best_params = {}
     
@@ -261,8 +279,8 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train', dump=Fals
     # Standardize features
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    print(X)
-    print(X_scaled)
+    #print(X)
+    #print(X_scaled)
 
     if dump:
         # Dump the fitted scaler
@@ -315,6 +333,15 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train', dump=Fals
             predicted_class = max(log_likelihoods, key=log_likelihoods.get)
             y_pred.append(predicted_class)
 
+        if not predictions_as_gt:
+            assert predictions_df["classe"].equals(pd.Series(y)), \
+                "Error: predictions_df['classe'] and y are not identical."
+        else:
+            assert predictions_df["predicted_classe"].equals(pd.Series(y)), \
+                "Error: predictions_df['predicted_classe'] and y are not identical."
+
+        predictions_df[yardstick] = y_pred
+
         evaluate(y, y_pred, results, yardstick)
 
     elif results_of == "test":
@@ -328,8 +355,7 @@ def train_model(X, y, yardstick, prior, results, results_of = 'train', dump=Fals
     elif results_of == "baseline":
         print('please provide split name!')
 
-
-    return results
+    return results, predictions_df
 
 
 def train_model_crossval(X, y, yardstick, prior, results, random_state=2, n_splits=5):
@@ -494,11 +520,40 @@ def train_joint_gmm_crossval(X, y, n_splits=5, use_priors=True):
     print("Confusion Matrix:\n", cm_df)
 
 
+def yardstick_alignment_metric(df,
+                               global_col="classe",
+                               yardstick_cols=("structure", "lexicon", "syntax", "semantics"),
+                               threshold=2):
+
+    # Convert all required columns from N1..N4 → integers
+    df_num = df.copy()
+    for col in [global_col] + list(yardstick_cols):
+        df_num[col] = df_num[col].map(level_to_int)
+
+    # Difference of each yardstick from global level
+    diffs = df_num[list(yardstick_cols)].sub(df_num[global_col], axis=0)
+
+    # Sum of signed differences
+    diff_sum = diffs.sum(axis=1)
+    # Absolute sum
+    abs_sum = diff_sum.abs()
+    # Boolean: does this text respect the rule |sum| <= 2?
+    consistent = abs_sum <= threshold
+    # By how much does each text violate the rule (0 if OK)?
+    violation = np.maximum(abs_sum - threshold, 0)
+
+    return {
+        "consistency_rate": round(consistent.mean(), 3),
+        "mean_abs_sum": round(abs_sum.mean(), 3),
+        "mean_violation": round(violation.mean(), 3),
+    }
+
+
 if __name__ == "__main__":
     random_state = 42
     np.random.seed(random_state)
 
-    results_of = "test"
+    results_of = "train"
     get_best_model = True
 
     if results_of == "baseline":
@@ -509,7 +564,9 @@ if __name__ == "__main__":
         save_results_to_csv(results, filename=filename)
     else:
 
-        outputs_json_path = './outputs'  # path to the folder containing the jsons outputs of the annotator
+        predictions_as_gt = True
+
+        outputs_json_path = 'outputs_depricated'  # path to the folder containing the jsons outputs of the annotator
 
         aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
         priors = ["uniform", "empirical"]
@@ -519,17 +576,20 @@ if __name__ == "__main__":
             print(prior, agg_type)
             results = copy.deepcopy(RESULTS_DICO)
             for yardstick in yardsticks:
-                X, y = get_data(outputs_json_path, yardstick, agg_type)
+                X, y = get_data(outputs_json_path, yardstick, agg_type, predictions_as_gt = predictions_as_gt)
                 print(yardstick, X.shape, y.shape)
                 print(f"--- CrossVal | Yardstick: {yardstick} | Prior: {prior} | Aggregation: {agg_type} | Seed: {random_state} ---")
-                #results = train_model_crossval(X, y, yardstick, prior, results, random_state=random_state ,n_splits=5)
-                results = train_model(X, y, yardstick, prior, results, results_of=results_of, dump=False)
-                #print(results)
-                break
-            #filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
+                # results = train_model_crossval(X, y, yardstick, prior, results, random_state=random_state ,n_splits=5)
+                results, predictions_df = train_model(X, y, yardstick, prior, results, predictions_df, results_of=results_of, predictions_as_gt= predictions_as_gt, dump=False)
+                # print(results)
+            # filename = f"./results/cv_rs{random_state}_prior-{prior}_agg-{agg_type}.csv"
 
-            filename = "./results/results_gmm_%s_best.csv" %results_of
+            filename = "./results/results_gmm_%s_best_latest.csv" %results_of
 
             extra= " " # "kmeans++"
             results['config'] = f"(random_state: {random_state}, prior: {prior}, aggregation_type: {agg_type}, extra: {extra})"
             save_results_to_csv(results, filename=filename)
+            print(predictions_df)
+            predictions_df.to_csv("predictions_df.csv", index=True, sep='\t')
+            metrics = yardstick_alignment_metric(predictions_df, global_col="classe")
+            print(metrics)
