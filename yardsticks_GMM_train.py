@@ -566,7 +566,7 @@ if __name__ == "__main__":
 
         predictions_as_gt = True
 
-        outputs_json_path = 'outputs_depricated'  # path to the folder containing the jsons outputs of the annotator
+        outputs_json_path = 'outputs'  # path to the folder containing the jsons outputs of the annotator
 
         aggregation_types = [ "mean", "mean+std", "mean+std+per+skew", "mean+std+max+per+skew", "full"]
         priors = ["uniform", "empirical"]
